@@ -1,4 +1,6 @@
 import Vue from 'vue'
+// fontawesome 图标
+import '@fortawesome/fontawesome-free/css/all.css'
 import './cube-ui'
 import './echarts'
 import './assets/app.scss'
