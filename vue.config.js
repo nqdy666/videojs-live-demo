@@ -1,4 +1,11 @@
 module.exports = {
+  devServer: {
+    proxy: {
+      '/hls': {
+        target: 'http://localhost:8080',
+      },
+    }
+  },
   css: {
     loaderOptions: {
       stylus: {

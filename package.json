@@ -1,5 +1,5 @@
 {
-  "name": "vve-cubeui",
+  "name": "video-js-demo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,9 +13,11 @@
     "core-js": "^2.6.5",
     "cube-ui": "~1.12.15",
     "echarts": "^4.2.1",
+    "resize-detector": "^0.2.0",
     "vue": "^2.6.10",
     "vue-echarts": "^4.0.2",
     "vue-router": "^3.0.3",
+    "vue-video-player": "5.0.2",
     "vuex": "^3.0.1",
     "vve-vue-axios": "^1.0.0"
   },
