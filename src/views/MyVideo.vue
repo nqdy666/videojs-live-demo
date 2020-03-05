@@ -112,7 +112,7 @@ export default {
           },
         },
         playsinline: true,
-        controls: true,
+        controls: false,
         // liveui: true, // 直播相关，m3u8情况下默认是true
         responsive: true,
         // fluid: true,
@@ -127,7 +127,7 @@ export default {
         sources: [
           {
             // src: "rtmp://120.77.78.199:1935/hls/test"
-            type: this.type,
+            type: 'video/x-flv',
             src: this.src, // '/hls/test.m3u8'
             // src: "https://interactive-examples.mdn.mozilla.net/media/examples/flower.webm"
             // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"

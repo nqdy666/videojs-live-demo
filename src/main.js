@@ -11,11 +11,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import VueVideoPlayer from './vue-video-player/src'
+import VueVideoPlayer from 'vue-video-player/src'
 import 'videojs-contrib-hls'
 import 'videojs-flash'
 import 'videojs-flvjs-es6'
-// import 'videojs-flvjs'
 import 'video.js/dist/video-js.css'
 import 'vue-video-player/src/custom-theme.css'
 Vue.use(VueVideoPlayer, /* {
