@@ -27,8 +27,8 @@ import { addListener, removeListener } from 'resize-detector'
 
 export default {
   props: {
-    src: {
-      type: String,
+    sources: {
+      type: [String, Array],
     },
     type: {
       type: String,
@@ -103,7 +103,7 @@ export default {
   computed: {
     playerOptions() {
       return {
-        techOrder: ["html5", 'flvjs', "flash"],
+        techOrder: ['flvjs', "html5", "flash"],
         flvjs: {
           mediaDataSource: {
             isLive: true,
@@ -124,15 +124,19 @@ export default {
         muted: false,
         language: "zh",
         playbackRates: [],
-        sources: [
-          {
-            // src: "rtmp://120.77.78.199:1935/hls/test"
-            type: 'video/x-flv',
-            src: this.src, // '/hls/test.m3u8'
-            // src: "https://interactive-examples.mdn.mozilla.net/media/examples/flower.webm"
-            // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
-          }
-        ]
+        sources: this.sources,
+        // sources: [
+        //   {
+        //     // src: "rtmp://120.77.78.199:1935/hls/test"
+        //     type: 'video/x-flv',
+        //     src: this.src, // '/hls/test.m3u8'
+        //     // src: "https://interactive-examples.mdn.mozilla.net/media/examples/flower.webm"
+        //     // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
+        //   },
+        //   {
+        //     src: '/live/av0.m3u8'
+        //   }
+        // ]
       };
     }
   }
