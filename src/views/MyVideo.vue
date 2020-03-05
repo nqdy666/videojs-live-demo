@@ -6,6 +6,7 @@
       :events="events"
       cross-origin="anonymous"
       :options="playerOptions"
+      @click.native="onTouchstart($event)"
       @touchstart="onTouchstart($event)"
       @play="onPlayerPlay($event)"
     @pause="onPlayerPause($event)"
@@ -27,6 +28,9 @@ import { addListener, removeListener } from 'resize-detector'
 export default {
   props: {
     src: {
+      type: String,
+    },
+    type: {
       type: String,
     }
   },
@@ -65,7 +69,7 @@ export default {
       console.log('player Playing!', player)
     },
     onPlayerTimeupdate(player) {
-      // console.log('player Timeupdate!', player.currentTime())
+      console.log('player Timeupdate!', player.currentTime())
     },
     onPlayerCanplay(player) {
       console.log('player Canplay!', player)
@@ -75,7 +79,7 @@ export default {
     },
     // or listen state event
     playerStateChanged(playerCurrentState) {
-      // console.log('player current update state', playerCurrentState)
+      console.log('player current update state', playerCurrentState)
     },
     // player is ready
     playerReadied(player) {
@@ -99,15 +103,23 @@ export default {
   computed: {
     playerOptions() {
       return {
-        techOrder: ["html5", "flash"],
-        controls: false,
-        liveui: true, // 直播相关，m3u8情况下默认是true
+        techOrder: ["html5", 'flvjs', "flash"],
+        flvjs: {
+          mediaDataSource: {
+            isLive: true,
+            cors: true,
+            withCredentials: false,
+          },
+        },
+        playsinline: true,
+        controls: true,
+        // liveui: true, // 直播相关，m3u8情况下默认是true
         responsive: true,
         // fluid: true,
         // aspectRatio: "16:9",
         bigPlayButton: false,
         height: this.height,
-        // preload: "auto",
+        preload: "auto",
         autoplay: true,
         muted: false,
         language: "zh",
@@ -115,6 +127,7 @@ export default {
         sources: [
           {
             // src: "rtmp://120.77.78.199:1935/hls/test"
+            type: this.type,
             src: this.src, // '/hls/test.m3u8'
             // src: "https://interactive-examples.mdn.mozilla.net/media/examples/flower.webm"
             // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
