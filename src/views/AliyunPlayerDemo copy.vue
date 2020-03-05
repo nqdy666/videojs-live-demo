@@ -1,33 +1,37 @@
 <template>
   <div class="home">
-    <my-video ref="video1" class="zhibo-video" :sources="sources1"
-      :class="{'small-video': smallVideo === 'video1'}" @click="handleClick('video1')"></my-video>
-    <my-video ref="video2" class="zhibo-video" :sources="sources2"
-    :class="{'small-video': smallVideo === 'video2'}" @click="handleClick('video2')"></my-video>
+    <vue-aliplayer-v2 
+      id="player-1" 
+      class="zhibo-video"
+      :options="options1"
+      :class="{'small-video': smallVideo === 'video1'}"
+      @click="handleClick('video1')"/>
+    <vue-aliplayer-v2 
+      id="player-2" 
+      class="zhibo-video"
+      :options="options2"
+      :class="{'small-video': smallVideo === 'video2'}"
+      @click="handleClick('video2')"/>
   </div>
 </template>
 
 <script>
-import MyVideo from './MyVideo'
+import VueAliplayerV2 from 'vue-aliplayer-v2';
 
 export default {
   name: 'home',
   components: {
-    MyVideo,
+    'vue-aliplayer-v2': VueAliplayerV2.Player
   },
   data () {
     return {
       smallVideo: 'video1',
-      sources1: [{
-        type: 'video/x-flv',
-        src: '/live/av0.flv', // '/hls/test.m3u8'
-      }],
-      sources2: [{
-        type: 'video/x-flv',
-        src: '/live/teacher.flv', // '/hls/test.m3u8'
-      }, {
-        src: '/live/teacher.m3u8'
-      }]
+      options1: {
+        source:'/live/av0.flv'
+      },
+      options2: {
+        source:'/live/teacher.flv'
+      },
     }
   },
   mounted () {
