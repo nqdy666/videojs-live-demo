@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import AliyunPlayerDemo from './views/AliyunPlayerDemo'
 import ChimeeDemo from './views/ChimeeDemo'
+import ChimeeMobileDemo from './views/ChimeeMobileDemo'
 
 Vue.use(Router)
 
@@ -17,10 +18,16 @@ export default new Router({
       path: '/aliyun-player',
       name: 'aliyun-player',
       component: AliyunPlayerDemo
-    }, {
+    },
+    {
       path: '/chimee-player',
       name: 'chimee-player',
       component: ChimeeDemo
+    },
+    {
+      path: '/chimee-mobile-player',
+      name: 'chimee-mobile-player',
+      component: ChimeeMobileDemo
     }
   ]
 })

@@ -16,5 +16,6 @@ module.exports = {
   },
   globals: {
     ChimeePlayer: false,
+    ChimeeMobilePlayer: false,
   }
 }
