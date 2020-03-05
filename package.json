@@ -10,6 +10,9 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.10.1",
     "axios": "^0.19.0",
+    "chimee": "^0.11.0",
+    "chimee-kernel-flv": "^1.4.10",
+    "chimee-player": "^1.4.8",
     "core-js": "^2.6.5",
     "cube-ui": "~1.12.15",
     "echarts": "^4.2.1",
