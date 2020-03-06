@@ -9,7 +9,13 @@ module.exports = {
       },
       '/live': {
         target: 'http://172.29.4.102:8080'
-      }
+      },
+      '/desktop': {
+        target: 'http://srplive.ruijie.com.cn'
+      },
+      '/teacher': {
+        target: 'http://srplive.ruijie.com.cn'
+      },
     }
   },
   css: {

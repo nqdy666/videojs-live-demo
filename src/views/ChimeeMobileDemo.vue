@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <div v-if="playerShow1" class="zhibo-video" :class="{'small-video': smallVideo === 'video1'}" @click.stop="handleClick('video1')">
-      <chimeePlayer
-        id="player-11"
-        ref="player1"
-        :options="options1"
-        />
-    </div>
     <div v-if="playerShow2" class="zhibo-video" :class="{'small-video': smallVideo === 'video2'}" @click.stop="handleClick('video2')">
       <chimeePlayer
         id="player-22" 
         ref="player2"
         :options="options2"
+        />
+    </div>
+    <div v-if="playerShow1" class="zhibo-video" :class="{'small-video': smallVideo === 'video1'}" @click.stop="handleClick('video1')">
+      <chimeePlayer
+        id="player-11"
+        ref="player1"
+        :options="options1"
         />
     </div>
   </div>
@@ -48,12 +48,12 @@ export default {
   },
   methods: {
     handleClick (type) {
-      if (type !== this.smallVideo) return
-      if (this.smallVideo === 'video1') {
-        this.smallVideo = 'video2'
-      } else {
-        this.smallVideo = 'video1'
-      }
+      // if (type !== this.smallVideo) return
+      // if (this.smallVideo === 'video1') {
+      //   this.smallVideo = 'video2'
+      // } else {
+      //   this.smallVideo = 'video1'
+      // }
     },
     handleReady1 () {
       setTimeout(() => {
@@ -79,7 +79,7 @@ export default {
   height: 100%;
   .zhibo-video {
     position: absolute;
-    left: 0;
+    left: 200px;
     top: 0;
     width: 100%;
     height: 600px;

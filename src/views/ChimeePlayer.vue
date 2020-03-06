@@ -23,10 +23,15 @@ export default {
       // autoplay: true,
       // controls: true,
       src: "/live/teacher.m3u8",
-      box: "hls",
+      box: "native",
       isLive: true,
       autoplay: true,
       controls: true,
+      playsInline: true,
+      preload: true,
+      x5VideoPlayerFullscreen: false,
+      x5VideoOrientation: false,
+      xWebkitAirplay: true,
       ...this.options
     });
   }
