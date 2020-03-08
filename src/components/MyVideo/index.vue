@@ -35,6 +35,14 @@ export default {
     src: {
       type: [String],
     },
+    muted: {
+      type: Boolean,
+      default: false,
+    },
+    poster: {
+      type: String,
+      default: ''
+    }
   },
   mounted () {
     addListener(this.$el, this.__resizeHandler)
@@ -136,9 +144,10 @@ export default {
         // height: 500,
         preload: "auto",
         autoplay,
-        muted: false,
+        muted: this.muted,
         language: "zh",
         playbackRates: [],
+        poster: this.poster,
         sources: [
           {
             type,

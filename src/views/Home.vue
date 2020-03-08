@@ -1,34 +1,49 @@
 <template>
   <div class="home">
-    <!-- <video style="width:100%;height:200px;" :src="sources1" controls="controls" 
-      x5-video-player-fullscreen="false"
-      autoplay
-      playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5">
-your browser does not support the video tag79878
-</video> -->
-    <my-video id="vidoe1" ref="video1" class="zhibo-video" :src="sources1"
-      :class="{'small-video': smallVideo === 'video1'}" @click="handleClick('video1')" @ready="handleVideo1Ready"></my-video>
-    <my-video id="vidoe2" ref="video2" class="zhibo-video" :src="sources2" v-if="showVideo2"
-    :class="{'small-video': smallVideo === 'video2'}" @click="handleClick('video2')" @ready="handleVideo2Ready"></my-video>
+    <my-video
+      id="vidoe1"
+      ref="video1"
+      class="zhibo-video"
+      :src="sources1"
+      :muted="smallVideo === 'video1'"
+      :poster="video1Poster"
+      :class="{ 'small-video': smallVideo === 'video1' }"
+      @click="handleClick('video1')"
+      @ready="handleVideo1Ready"
+    ></my-video>
+    <my-video
+      id="vidoe2"
+      ref="video2"
+      class="zhibo-video"
+      :src="sources2"
+      :muted="smallVideo === 'video2'"
+       :poster="video2Poster"
+      v-if="showVideo2"
+      :class="{ 'small-video': smallVideo === 'video2' }"
+      @click="handleClick('video2')"
+      @ready="handleVideo2Ready"
+    ></my-video>
   </div>
 </template>
 
 <script>
-import MyVideo from '../components/MyVideo'
-import { isWeixin } from '../components/MyVideo/util'
+import MyVideo from "../components/MyVideo";
+import { isWeixin } from "../components/MyVideo/util";
 
 export default {
-  name: 'home',
+  name: "home",
   components: {
-    MyVideo,
+    MyVideo
   },
-  data () {
+  data() {
     return {
       showVideo1: true,
-      showVideo2: !isWeixin,
-      smallVideo: 'video1',
-      sources1: '/flv?port=1935&app=hls&stream=test', // /flv?port=1935&app=hls&stream=test
-      sources2: '/flv?port=1935&app=hls&stream=test', // /movie.mp4
+      showVideo2: true,
+      video1Poster: '/poster1.jpg',
+      video2Poster: '/poster2.jpg',
+      smallVideo: "video1",
+      sources1: "/hls/test.m3u8", // /flv?port=1935&app=hls&stream=test
+      sources2: "/hls/test.m3u8" // /movie.mp4
       // sources1: [{
       //   type: 'video/x-flv',
       //   src: '/live/av0.flv', // '/hls/test.m3u8'
@@ -41,28 +56,26 @@ export default {
       // }, {
       //   src: '/live/teacher.m3u8'
       // }]
-    }
+    };
   },
-  mounted () {
-  },
+  mounted() {},
   methods: {
-    handleClick (type) {
-      if (type !== this.smallVideo) return
-      if (this.smallVideo === 'video1') {
-        this.smallVideo = 'video2'
+    handleClick(type) {
+      if (type !== this.smallVideo) return;
+      if (this.smallVideo === "video1") {
+        this.smallVideo = "video2";
       } else {
-        this.smallVideo = 'video1'
+        this.smallVideo = "video1";
       }
     },
-    handleVideo1Ready () {
+    handleVideo1Ready() {
       setTimeout(() => {
-        this.showVideo2 = true
-      }, 4 * 1000) // 2秒延时
+        this.showVideo2 = true;
+      }, 4 * 1000); // 2秒延时
     },
-    handleVideo2Ready () {
-    }
+    handleVideo2Ready() {}
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .home {
