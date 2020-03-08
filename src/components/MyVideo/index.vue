@@ -87,6 +87,9 @@ export default {
       // seek to 10s
       console.log("example player 1 readied", player);
       // console.log('example 01: the player is readied', player)
+       this.$emit('ready')
+    },
+    handleReady () {
     }
   },
   beforeDestroy () {
@@ -102,6 +105,10 @@ export default {
   },
   computed: {
     playerOptions() {
+      let type = ''
+      if (this.src && this.src.indexOf('flv') !== -1) {
+        type = 'video/x-flv'
+      }
       return {
         techOrder: ["html5", 'flvjs', "flash"],
         flvjs: {
@@ -123,12 +130,13 @@ export default {
         // width: '100%',
         // height: 500,
         preload: "auto",
-        autoplay: false,
+        autoplay: true,
         muted: false,
         language: "zh",
         playbackRates: [],
         sources: [
           {
+            type,
             src: this.src
           }
         ],

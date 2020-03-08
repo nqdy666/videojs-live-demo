@@ -6,10 +6,10 @@
       playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5">
 your browser does not support the video tag79878
 </video> -->
-    <my-video ref="video1" class="zhibo-video" :src="sources1"
-      :class="{'small-video': smallVideo === 'video1'}" @click="handleClick('video1')"></my-video>
-    <my-video ref="video2" class="zhibo-video" :src="sources2"
-    :class="{'small-video': smallVideo === 'video2'}" @click="handleClick('video2')"></my-video>
+    <my-video id="vidoe1" ref="video1" class="zhibo-video" :src="sources1"
+      :class="{'small-video': smallVideo === 'video1'}" @click="handleClick('video1')" @ready="handleVideo1Ready"></my-video>
+    <my-video id="vidoe2" ref="video2" class="zhibo-video" :src="sources2" v-if="showVideo2"
+    :class="{'small-video': smallVideo === 'video2'}" @click="handleClick('video2')" @ready="handleVideo2Ready"></my-video>
   </div>
 </template>
 
@@ -23,9 +23,11 @@ export default {
   },
   data () {
     return {
+      showVideo1: true,
+      showVideo2: false,
       smallVideo: 'video1',
-      sources1: '/movie2.mp4',
-      sources2: '/movie.mp4',
+      sources1: '/flv?port=1935&app=hls&stream=test', // /flv?port=1935&app=hls&stream=test
+      sources2: '/flv?port=1935&app=hls&stream=test', // /movie.mp4
       // sources1: [{
       //   type: 'video/x-flv',
       //   src: '/live/av0.flv', // '/hls/test.m3u8'
@@ -51,6 +53,13 @@ export default {
         this.smallVideo = 'video1'
       }
     },
+    handleVideo1Ready () {
+      setTimeout(() => {
+        this.showVideo2 = true
+      }, 2 * 1000) // 2秒延时
+    },
+    handleVideo2Ready () {
+    }
   }
 }
 </script>
