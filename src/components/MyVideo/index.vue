@@ -25,7 +25,7 @@
 <script>
 import { addListener, removeListener } from 'resize-detector/dist'
 import videoPlayer from './VueVideoJsPlayer'
-import { isWeixin } from './util'
+import { isWeixin, isIOS } from './util'
 
 export default {
   components: {
@@ -34,6 +34,12 @@ export default {
   props: {
     src: {
       type: [String],
+    },
+    flvSrc: {
+      type: String,
+    },
+    hlsSrc: {
+      type: String,
     },
     muted: {
       type: Boolean,
@@ -115,7 +121,11 @@ export default {
   computed: {
     playerOptions() {
       let type = ''
-      if (this.src && this.src.indexOf('flv') !== -1) {
+      let src = ''
+      if (isIOS) {
+        src = this.hlsSrc
+      } else {
+        src = this.flvSrc
         type = 'video/x-flv'
       }
       let autoplay = true
@@ -136,9 +146,9 @@ export default {
         // // liveui: true, // 直播相关，m3u8情况下默认是true
         responsive: true,
         loop: true,
-        // // fluid: true,
+        fluid: false,
         // // aspectRatio: "16:9",
-        bigPlayButton: true,
+        bigPlayButton: false,
         // height: this.height,
         // width: '100%',
         // height: 500,
@@ -151,7 +161,7 @@ export default {
         sources: [
           {
             type,
-            src: this.src
+            src
           }
         ],
         // sources: [

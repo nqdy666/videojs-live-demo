@@ -4,7 +4,8 @@
       id="vidoe1"
       ref="video1"
       class="zhibo-video"
-      :src="sources1"
+      :flvSrc="flvSrc1"
+      :hlsSrc="hlsSrc1"
       :muted="smallVideo === 'video1'"
       :poster="video1Poster"
       :class="{ 'small-video': smallVideo === 'video1' }"
@@ -15,7 +16,8 @@
       id="vidoe2"
       ref="video2"
       class="zhibo-video"
-      :src="sources2"
+      :flvSrc="flvSrc2"
+      :hlsSrc="hlsSrc2"
       :muted="smallVideo === 'video2'"
        :poster="video2Poster"
       v-if="showVideo2"
@@ -38,12 +40,16 @@ export default {
   data() {
     return {
       showVideo1: true,
-      showVideo2: true,
+      showVideo2: !isWeixin,
       video1Poster: '/poster1.jpg',
       video2Poster: '/poster2.jpg',
       smallVideo: "video1",
-      sources1: "/hls/test.m3u8", // /flv?port=1935&app=hls&stream=test
-      sources2: "/hls/test.m3u8" // /movie.mp4
+      flvSrc1: '/flv?port=1935&app=hls&stream=test',
+      hlsSrc1: '/hls/test.m3u8',
+      flvSrc2: '/flv?port=1935&app=hls&stream=test',
+      hlsSrc2: '/hls/test.m3u8',
+      // sources1: "/hls/test.m3u8", // /flv?port=1935&app=hls&stream=test
+      // sources2: "/hls/test.m3u8" // /movie.mp4
       // sources1: [{
       //   type: 'video/x-flv',
       //   src: '/live/av0.flv', // '/hls/test.m3u8'
@@ -91,7 +97,7 @@ export default {
     left: 20px;
     top: 20px;
     width: 200px;
-    height: 200px;
+    height: 150px;
     z-index: 1;
   }
 }
