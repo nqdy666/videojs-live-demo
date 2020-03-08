@@ -23,9 +23,8 @@
   </div>
 </template>
 <script>
-import { addListener, removeListener } from 'resize-detector/dist'
 import videoPlayer from './VueVideoJsPlayer'
-import { isWeixin, isIOS, isIE11 } from './util'
+import { isWeixin, isIOS, isIE11, isANDROID } from './util'
 
 export default {
   components: {
@@ -48,16 +47,8 @@ export default {
     }
   },
   mounted () {
-    addListener(this.$el, this.__resizeHandler)
-    this.resize()
   },
   methods: {
-    __resizeHandler () {
-      this.resize()
-    },
-    resize() {
-      this.height = this.$el.clientHeight
-    },
     // https://github.com/videojs/video.js/issues/5403
     onTouchstart () {
       this.$emit('click')
@@ -102,11 +93,9 @@ export default {
     },
   },
   beforeDestroy () {
-    removeListener(this.$el, this.__resizeHandler)
   },
   data () {
     return {
-      height: 100,
        events: [
         'touchstart'
       ]
@@ -143,12 +132,10 @@ export default {
         // // liveui: true, // 直播相关，m3u8情况下默认是true
         responsive: true,
         loop: true,
-        fluid: false,
+        // fluid: false,
         // // aspectRatio: "16:9",
         bigPlayButton: false,
-        // height: this.height,
         // width: '100%',
-        // height: 500,
         preload: "auto",
         autoplay,
         muted: this.muted,

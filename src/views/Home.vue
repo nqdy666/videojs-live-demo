@@ -41,8 +41,8 @@ export default {
     return {
       showVideo1: true,
       showVideo2: !isWeixin,
-      video1Poster: '/poster1.jpg',
-      video2Poster: '/poster2.jpg',
+      video1Poster: '/poster1.jpg', // /poster1.jpg
+      video2Poster: '/poster2.jpg', // /poster2.jpg
       smallVideo: "video1",
       flvSrc1: '/flv?port=1935&app=hls&stream=test',
       hlsSrc1: '/hls/test.m3u8',
