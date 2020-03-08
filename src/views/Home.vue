@@ -1,5 +1,11 @@
 <template>
   <div class="home">
+    <!-- <video style="width:100%;height:200px;" :src="sources1" controls="controls" 
+      x5-video-player-fullscreen="false"
+      autoplay
+      playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5">
+your browser does not support the video tag79878
+</video> -->
     <my-video ref="video1" class="zhibo-video" :src="sources1"
       :class="{'small-video': smallVideo === 'video1'}" @click="handleClick('video1')"></my-video>
     <my-video ref="video2" class="zhibo-video" :src="sources2"
@@ -18,8 +24,8 @@ export default {
   data () {
     return {
       smallVideo: 'video1',
-      sources1: '/movie.mp4',
-      sources2: '/movie2.mp4',
+      sources1: '/movie2.mp4',
+      sources2: '/movie.mp4',
       // sources1: [{
       //   type: 'video/x-flv',
       //   src: '/live/av0.flv', // '/hls/test.m3u8'

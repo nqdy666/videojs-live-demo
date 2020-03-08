@@ -86,7 +86,6 @@ export default {
     playerReadied(player) {
       // seek to 10s
       console.log("example player 1 readied", player);
-      player.currentTime(10);
       // console.log('example 01: the player is readied', player)
     }
   },
@@ -104,7 +103,7 @@ export default {
   computed: {
     playerOptions() {
       return {
-        techOrder: ['flvjs', "html5", "flash"],
+        techOrder: ["html5", 'flvjs', "flash"],
         flvjs: {
           mediaDataSource: {
             isLive: true,
@@ -114,19 +113,24 @@ export default {
         },
         playsinline: true,
         controls: false,
-        // liveui: true, // 直播相关，m3u8情况下默认是true
+        // // liveui: true, // 直播相关，m3u8情况下默认是true
         responsive: true,
-        // fluid: true,
-        // aspectRatio: "16:9",
-        bigPlayButton: false,
-        height: this.height,
+        loop: true,
+        // // fluid: true,
+        // // aspectRatio: "16:9",
+        bigPlayButton: true,
+        // height: this.height,
+        // width: '100%',
+        // height: 500,
         preload: "auto",
-        autoplay: true,
+        autoplay: false,
         muted: false,
         language: "zh",
         playbackRates: [],
         sources: [
-          {src: this.src}
+          {
+            src: this.src
+          }
         ],
         // sources: [
         //   {
