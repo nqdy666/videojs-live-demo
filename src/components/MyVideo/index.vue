@@ -25,6 +25,7 @@
 <script>
 import { addListener, removeListener } from 'resize-detector/dist'
 import videoPlayer from './VueVideoJsPlayer'
+import { isWeixin } from './util'
 
 export default {
   components: {
@@ -109,6 +110,10 @@ export default {
       if (this.src && this.src.indexOf('flv') !== -1) {
         type = 'video/x-flv'
       }
+      let autoplay = true
+      if (isWeixin && type !== 'video/x-flv') {
+        autoplay = false
+      }
       return {
         techOrder: ["html5", 'flvjs', "flash"],
         flvjs: {
@@ -130,7 +135,7 @@ export default {
         // width: '100%',
         // height: 500,
         preload: "auto",
-        autoplay: true,
+        autoplay,
         muted: false,
         language: "zh",
         playbackRates: [],

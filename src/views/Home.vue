@@ -15,6 +15,7 @@ your browser does not support the video tag79878
 
 <script>
 import MyVideo from '../components/MyVideo'
+import { isWeixin } from '../components/MyVideo/util'
 
 export default {
   name: 'home',
@@ -24,7 +25,7 @@ export default {
   data () {
     return {
       showVideo1: true,
-      showVideo2: false,
+      showVideo2: !isWeixin,
       smallVideo: 'video1',
       sources1: '/flv?port=1935&app=hls&stream=test', // /flv?port=1935&app=hls&stream=test
       sources2: '/flv?port=1935&app=hls&stream=test', // /movie.mp4
@@ -56,7 +57,7 @@ export default {
     handleVideo1Ready () {
       setTimeout(() => {
         this.showVideo2 = true
-      }, 2 * 1000) // 2秒延时
+      }, 4 * 1000) // 2秒延时
     },
     handleVideo2Ready () {
     }

@@ -19,6 +19,7 @@
 // import _videojs from 'video.js'
 // const videojs = window.videojs || _videojs
 const videojs = window.videojs;
+import { isWeixin } from './util'
 
 function autoPlayAudio(video) {
   if (window.WeixinJSBridge) {
@@ -42,7 +43,6 @@ function autoPlayAudio(video) {
     );
   }
   video.play();
-
   return false;
 }
 
@@ -192,7 +192,7 @@ export default {
         this.on("timeupdate", function() {
           emitPlayerState("timeupdate", this.currentTime());
         });
-        if (videoOptions.autoplay) {
+        if (videoOptions.autoplay && isWeixin) {
           autoPlayAudio(this)
         }
         // player readied
