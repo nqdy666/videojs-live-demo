@@ -25,16 +25,13 @@
 <script>
 import { addListener, removeListener } from 'resize-detector/dist'
 import videoPlayer from './VueVideoJsPlayer'
-import { isWeixin, isIOS } from './util'
+import { isWeixin, isIOS, isIE11 } from './util'
 
 export default {
   components: {
     videoPlayer,
   },
   props: {
-    src: {
-      type: [String],
-    },
     flvSrc: {
       type: String,
     },
@@ -67,45 +64,42 @@ export default {
     },
     // listen event
     onPlayerPlay(player) {
-      console.log('player play!', player)
+      // console.log('player play!', player)
     },
     onPlayerPause(player) {
-      console.log('player pause!', player)
+      // console.log('player pause!', player)
     },
     onPlayerEnded(player) {
-      console.log('player ended!', player)
+      // console.log('player ended!', player)
     },
     onPlayerLoadeddata(player) {
-      console.log('player Loadeddata!', player)
+      // console.log('player Loadeddata!', player)
     },
     onPlayerWaiting(player) {
-      console.log('player Waiting!', player)
+      // console.log('player Waiting!', player)
     },
     onPlayerPlaying(player) {
-      console.log('player Playing!', player)
+      // console.log('player Playing!', player)
     },
     onPlayerTimeupdate(player) {
-      console.log('player Timeupdate!', player.currentTime())
+      // console.log('player Timeupdate!', player.currentTime())
     },
     onPlayerCanplay(player) {
-      console.log('player Canplay!', player)
+      // console.log('player Canplay!', player)
     },
     onPlayerCanplaythrough(player) {
-      console.log('player Canplaythrough!', player)
+      // console.log('player Canplaythrough!', player)
     },
     // or listen state event
     playerStateChanged(playerCurrentState) {
-      console.log('player current update state', playerCurrentState)
+      // console.log('player current update state', playerCurrentState)
     },
     // player is ready
     playerReadied(player) {
-      // seek to 10s
-      console.log("example player 1 readied", player);
+      // console.log("example player 1 readied", player);
       // console.log('example 01: the player is readied', player)
        this.$emit('ready')
     },
-    handleReady () {
-    }
   },
   beforeDestroy () {
     removeListener(this.$el, this.__resizeHandler)
@@ -124,6 +118,9 @@ export default {
       let src = ''
       if (isIOS) {
         src = this.hlsSrc
+      } else if (isIE11) {
+        src = this.hlsSrc
+        type = ''
       } else {
         src = this.flvSrc
         type = 'video/x-flv'

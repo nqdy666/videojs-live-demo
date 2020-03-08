@@ -10,3 +10,12 @@ export const isIOS = ((function () { //判断是否是iOS
 export const isANDROID = ((function () { //判断是否是Android
   return navigator.userAgent.match(/android/i)
 })());
+
+export const isIE11 = ((function () { // 判断IE11
+  var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串 
+	var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+	if(isIE11){
+		return true;
+	}
+	return false;
+})());
