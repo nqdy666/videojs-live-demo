@@ -100,5 +100,14 @@ export default {
     height: 150px;
     z-index: 1;
   }
+
+  @media screen and (min-width: 600px) {
+    .small-video {
+      left: unset;
+      top: unset;
+      bottom: 20px;
+      right: 20px;
+    }
+  }
 }
 </style>
