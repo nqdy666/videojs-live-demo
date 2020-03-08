@@ -89,7 +89,9 @@ export default {
     playerReadied(player) {
       // console.log("example player 1 readied", player);
       // console.log('example 01: the player is readied', player)
-       this.$emit('ready')
+      this.player = player
+      player.muted(this.muted)
+      this.$emit('ready')
     },
   },
   beforeDestroy () {
@@ -138,7 +140,7 @@ export default {
         // width: '100%',
         preload: "auto",
         autoplay,
-        muted: this.muted,
+        muted: false,
         language: "zh",
         playbackRates: [],
         poster: this.poster,
@@ -161,6 +163,11 @@ export default {
         //   }
         // ]
       };
+    }
+  },
+  watch: {
+    muted () {
+      this.player && (this.player.muted(this.muted))
     }
   }
 };
