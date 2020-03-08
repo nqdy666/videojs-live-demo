@@ -1,14 +1,14 @@
 <template>
   <div class="home">
-    <my-video ref="video1" class="zhibo-video" :sources="sources1"
+    <my-video ref="video1" class="zhibo-video" :src="sources1"
       :class="{'small-video': smallVideo === 'video1'}" @click="handleClick('video1')"></my-video>
-    <my-video ref="video2" class="zhibo-video" :sources="sources2"
+    <my-video ref="video2" class="zhibo-video" :src="sources2"
     :class="{'small-video': smallVideo === 'video2'}" @click="handleClick('video2')"></my-video>
   </div>
 </template>
 
 <script>
-import MyVideo from './MyVideo'
+import MyVideo from '../components/MyVideo'
 
 export default {
   name: 'home',
@@ -18,18 +18,20 @@ export default {
   data () {
     return {
       smallVideo: 'video1',
-      sources1: [{
-        type: 'video/x-flv',
-        src: '/live/av0.flv', // '/hls/test.m3u8'
-      }, {
-        src: '/live/av0.m3u8'
-      }],
-      sources2: [{
-        type: 'video/x-flv',
-        src: '/live/teacher.flv', // '/hls/test.m3u8'
-      }, {
-        src: '/live/teacher.m3u8'
-      }]
+      sources1: '/movie.mp4',
+      sources2: '/movie2.mp4',
+      // sources1: [{
+      //   type: 'video/x-flv',
+      //   src: '/live/av0.flv', // '/hls/test.m3u8'
+      // }, {
+      //   src: '/live/av0.m3u8'
+      // }],
+      // sources2: [{
+      //   type: 'video/x-flv',
+      //   src: '/live/teacher.flv', // '/hls/test.m3u8'
+      // }, {
+      //   src: '/live/teacher.m3u8'
+      // }]
     }
   },
   mounted () {

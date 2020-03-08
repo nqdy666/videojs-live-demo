@@ -9,6 +9,8 @@ video js 样例代码，其中有
 - 基于vue-cli@3工具生成
 - 支持hls直播
 
+https://blog.videojs.com/video-js-7-is-here/
+
 ### 用到相关的库
 - "resize-detector": "^0.2.0",
 - "vue-video-player": "5.0.2", （vue-video-player依赖的库如下，具体可以参考node_modules\vue-video-player）
