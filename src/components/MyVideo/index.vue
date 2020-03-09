@@ -117,11 +117,12 @@ export default {
         type = 'video/x-flv'
       }
       let bigPlayButton = false
-      if (isIOS) {
+      if (isIOS && !isWeixin) {
         bigPlayButton = true
       }
       let autoplay = true
-      if (isWeixin && type !== 'video/x-flv') {
+      // 微信的IOS能够自动播放
+      if (isWeixin && !isIOS && type !== 'video/x-flv') {
         autoplay = false
       }
       return {

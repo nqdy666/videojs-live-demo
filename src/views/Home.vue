@@ -31,7 +31,7 @@
 
 <script>
 import MyVideo from "../components/MyVideo";
-import { isWeixin } from "../components/MyVideo/util";
+import { isWeixin, isANDROID } from "../components/MyVideo/util";
 
 export default {
   name: "home",
@@ -40,7 +40,7 @@ export default {
   },
   data() {
     return {
-      showVideo1: true,
+      showVideo1: !(isWeixin && isANDROID), // 安卓的微信自动播放有问题，需要延迟
       showVideo2: true,
       video1Poster: '/poster1.jpg', // /poster1.jpg
       video2Poster: '/poster2.jpg', // /poster2.jpg
