@@ -7,6 +7,7 @@
       :flvSrc="flvSrc1"
       :hlsSrc="hlsSrc1"
       :muted="smallVideo === 'video1'"
+      v-if="showVideo1"
       :poster="video1Poster"
       :class="{ 'small-video': smallVideo === 'video1' }"
       @click="handleClick('video1')"
@@ -40,14 +41,14 @@ export default {
   data() {
     return {
       showVideo1: true,
-      showVideo2: !isWeixin,
+      showVideo2: true,
       video1Poster: '/poster1.jpg', // /poster1.jpg
       video2Poster: '/poster2.jpg', // /poster2.jpg
       smallVideo: "video1",
       flvSrc1: '/flv?port=1935&app=hls&stream=test',
-      hlsSrc1: '/hls/test.m3u8',
-      flvSrc2: '/flv?port=1935&app=hls&stream=test',
-      hlsSrc2: '/hls/test.m3u8',
+      hlsSrc1: '/live/av0.m3u8',
+      flvSrc2: '/live/teacher.flv',
+      hlsSrc2: '/hls/void.m3u8',
       // sources1: "/hls/test.m3u8", // /flv?port=1935&app=hls&stream=test
       // sources2: "/hls/test.m3u8" // /movie.mp4
       // sources1: [{
@@ -75,11 +76,12 @@ export default {
       }
     },
     handleVideo1Ready() {
-      setTimeout(() => {
-        this.showVideo2 = true;
-      }, 4 * 1000); // 2秒延时
     },
-    handleVideo2Ready() {}
+    handleVideo2Ready() {
+      setTimeout(() => {
+        this.showVideo1 = true;
+      }, 4 * 1000); // 2秒延时
+    }
   }
 };
 </script>

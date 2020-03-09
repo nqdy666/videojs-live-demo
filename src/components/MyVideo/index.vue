@@ -116,6 +116,10 @@ export default {
         src = this.flvSrc
         type = 'video/x-flv'
       }
+      let bigPlayButton = false
+      if (isIOS) {
+        bigPlayButton = true
+      }
       let autoplay = true
       if (isWeixin && type !== 'video/x-flv') {
         autoplay = false
@@ -136,7 +140,7 @@ export default {
         loop: true,
         // fluid: false,
         // // aspectRatio: "16:9",
-        bigPlayButton: false,
+        bigPlayButton,
         // width: '100%',
         preload: "auto",
         autoplay,
