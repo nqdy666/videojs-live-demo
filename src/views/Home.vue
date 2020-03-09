@@ -10,8 +10,9 @@
       v-if="showVideo1"
       :poster="video1Poster"
       :class="{ 'small-video': smallVideo === 'video1' }"
-      @click="handleClick('video1')"
+      @click="handleClick('video1', video1Playing)"
       @ready="handleVideo1Ready"
+      @playing="handleVideo1Playing"
     ></my-video>
     <my-video
       id="vidoe2"
@@ -23,8 +24,9 @@
        :poster="video2Poster"
       v-if="showVideo2"
       :class="{ 'small-video': smallVideo === 'video2' }"
-      @click="handleClick('video2')"
+      @click="handleClick('video2', video2Playing)"
       @ready="handleVideo2Ready"
+      @playing="handleVideo2Playing"
     ></my-video>
   </div>
 </template>
@@ -42,6 +44,8 @@ export default {
     return {
       showVideo1: true, // 安卓的微信自动播放有问题，需要延迟
       showVideo2: true,
+      video1Playing: false,
+      video2Playing: false,
       video1Poster: '/poster1.jpg', // /poster1.jpg
       video2Poster: '/poster2.jpg', // /poster2.jpg
       smallVideo: "video1",
@@ -67,7 +71,8 @@ export default {
   },
   mounted() {},
   methods: {
-    handleClick(type) {
+    handleClick(type, playing) {
+      if (!playing) return
       if (type !== this.smallVideo) return;
       if (this.smallVideo === "video1") {
         this.smallVideo = "video2";
@@ -77,11 +82,12 @@ export default {
     },
     handleVideo1Ready() {
     },
-    handleVideo2Ready() {
-      setTimeout(() => {
-        this.showVideo1 = true;
-      }, 4 * 1000); // 2秒延时
-    }
+    handleVideo1Playing () {
+      this.video1Playing = true
+    },
+    handleVideo2Playing () {
+      this.video2Playing = true
+    },
   }
 };
 </script>

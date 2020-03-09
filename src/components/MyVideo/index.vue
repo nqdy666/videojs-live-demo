@@ -70,7 +70,8 @@ export default {
       console.log('player Waiting!', player)
     },
     onPlayerPlaying(player) {
-      // console.log('player Playing!', player)
+      console.log('player Playing!', player)
+      this.$emit('playing')
     },
     onPlayerTimeupdate(player) {
       // console.log('player Timeupdate!', player.currentTime())
