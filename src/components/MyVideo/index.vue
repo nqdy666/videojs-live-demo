@@ -67,7 +67,7 @@ export default {
       // console.log('player Loadeddata!', player)
     },
     onPlayerWaiting(player) {
-      // console.log('player Waiting!', player)
+      console.log('player Waiting!', player)
     },
     onPlayerPlaying(player) {
       // console.log('player Playing!', player)
@@ -117,14 +117,15 @@ export default {
         type = 'video/x-flv'
       }
       let bigPlayButton = false
-      if (isIOS && !isWeixin) {
+      // safari需要大按钮，安卓微信需要大按钮
+      if ((isIOS && !isWeixin) || (isANDROID && isWeixin)) {
         bigPlayButton = true
       }
       let autoplay = true
-      // 微信的IOS能够自动播放
-      if (isWeixin && !isIOS && type !== 'video/x-flv') {
-        autoplay = false
-      }
+      // 安卓微信的自动播放有问题
+      // if (isWeixin && isANDROID) {
+      //   autoplay = false
+      // }
       return {
         techOrder: ["html5", 'flvjs', "flash"],
         flvjs: {

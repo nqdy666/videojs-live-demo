@@ -40,12 +40,12 @@ export default {
   },
   data() {
     return {
-      showVideo1: !(isWeixin && isANDROID), // 安卓的微信自动播放有问题，需要延迟
+      showVideo1: true, // 安卓的微信自动播放有问题，需要延迟
       showVideo2: true,
       video1Poster: '/poster1.jpg', // /poster1.jpg
       video2Poster: '/poster2.jpg', // /poster2.jpg
       smallVideo: "video1",
-      flvSrc1: '/flv?port=1935&app=hls&stream=test',
+      flvSrc1: '/live/av0.flv',
       hlsSrc1: '/live/av0.m3u8',
       flvSrc2: '/live/teacher.flv',
       hlsSrc2: '/hls/void.m3u8',
