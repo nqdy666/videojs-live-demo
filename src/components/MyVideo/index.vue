@@ -117,11 +117,11 @@ export default {
         src = this.flvSrc
         type = 'video/x-flv'
       }
-      let bigPlayButton = false
-      // safari需要大按钮，安卓微信需要大按钮
-      if ((isIOS && !isWeixin) || (isANDROID && isWeixin)) {
-        bigPlayButton = true
-      }
+      let bigPlayButton = true
+      // // safari需要大按钮，安卓微信需要大按钮
+      // if ((isIOS && !isWeixin) || (isANDROID && isWeixin)) {
+      //   bigPlayButton = true
+      // }
       let autoplay = true
       // 安卓微信的自动播放有问题
       // if (isWeixin && isANDROID) {

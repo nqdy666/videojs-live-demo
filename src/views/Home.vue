@@ -82,6 +82,8 @@ export default {
     },
     handleVideo1Ready() {
     },
+    handleVideo2Ready () {
+    },
     handleVideo1Playing () {
       this.video1Playing = true
     },
