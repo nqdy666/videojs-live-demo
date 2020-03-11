@@ -5,7 +5,7 @@
       class="video-js"
       ref="video"
       data-setup="{}"
-      x5-video-player-fullscreen="false"
+      x5-video-player-fullscreen="true"
       playsinline
       webkit-playsinline
       x5-playsinline

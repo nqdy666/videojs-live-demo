@@ -24,7 +24,7 @@
 </template>
 <script>
 import videoPlayer from './VueVideoJsPlayer'
-import { isWeixin, isIOS, isIE11, isANDROID, isUC } from './util'
+import { isWeixin, isIOS, isIE11, isANDROID, isUC, isQQBrowser } from './util'
 
 export default {
   components: {
@@ -108,7 +108,7 @@ export default {
     playerOptions() {
       let type = ''
       let src = ''
-      if (isIOS || isUC) {
+      if (isIOS || isUC || isQQBrowser) {
         src = this.hlsSrc
       } else if (isIE11) {
         src = this.hlsSrc
@@ -124,7 +124,7 @@ export default {
       // }
       let autoplay = true
       // UC浏览器自动播放有问题
-      if (isUC) {
+      if (isUC || isQQBrowser) {
         autoplay = false
       }
       return {

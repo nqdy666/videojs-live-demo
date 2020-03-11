@@ -52,7 +52,7 @@ export default {
       flvSrc1: '/live/av0.flv',
       hlsSrc1: '/live/av0.m3u8',
       flvSrc2: '/live/teacher.flv',
-      hlsSrc2: '/hls/void.m3u8',
+      hlsSrc2: '/live/teacher.m3u8',
       // sources1: "/hls/test.m3u8", // /flv?port=1935&app=hls&stream=test
       // sources2: "/hls/test.m3u8" // /movie.mp4
       // sources1: [{
