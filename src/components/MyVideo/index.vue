@@ -24,7 +24,7 @@
 </template>
 <script>
 import videoPlayer from './VueVideoJsPlayer'
-import { isWeixin, isIOS, isIE11, isANDROID } from './util'
+import { isWeixin, isIOS, isIE11, isANDROID, isUC } from './util'
 
 export default {
   components: {
@@ -108,7 +108,7 @@ export default {
     playerOptions() {
       let type = ''
       let src = ''
-      if (isIOS) {
+      if (isIOS || isUC) {
         src = this.hlsSrc
       } else if (isIE11) {
         src = this.hlsSrc
@@ -123,10 +123,10 @@ export default {
       //   bigPlayButton = true
       // }
       let autoplay = true
-      // 安卓微信的自动播放有问题
-      // if (isWeixin && isANDROID) {
-      //   autoplay = false
-      // }
+      // UC浏览器自动播放有问题
+      if (isUC) {
+        autoplay = false
+      }
       return {
         techOrder: ["html5", 'flvjs', "flash"],
         flvjs: {
