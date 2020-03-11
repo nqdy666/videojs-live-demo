@@ -16,7 +16,7 @@ export const isUC = ((function () { //判断是否是UC浏览器
 })());
 
 export const isQQBrowser = ((function () { //判断是否是手机QQ浏览器
-  return navigator.userAgent.indexOf('MQQBrowser') > -1
+  return navigator.userAgent.indexOf('MQQBrowser') > -1 && !isWeixin
 })());
 
 export const isIE11 = ((function () { // 判断IE11

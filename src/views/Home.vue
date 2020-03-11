@@ -120,7 +120,7 @@ export default {
     top: 1%;
     transform: unset;
     width: 200px;
-    height: 26%;
+    height: 25%;
     z-index: 1;
   }
 
