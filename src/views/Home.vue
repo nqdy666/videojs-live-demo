@@ -3,13 +3,12 @@
     <my-video
       id="vidoe1"
       ref="video1"
-      class="zhibo-video"
       :flvSrc="flvSrc1"
       :hlsSrc="hlsSrc1"
       :muted="smallVideo === 'video1'"
       v-if="showVideo1"
       :poster="video1Poster"
-      :class="{ 'small-video': smallVideo === 'video1' }"
+      :class="{ 'zhibo-video': !zhiboVideoFixedWh, 'zhibo-video-fixed-wh': zhiboVideoFixedWh, 'small-video': smallVideo === 'video1' }"
       @click="handleClick('video1', video1Playing)"
       @ready="handleVideo1Ready"
       @playing="handleVideo1Playing"
@@ -17,13 +16,12 @@
     <my-video
       id="vidoe2"
       ref="video2"
-      class="zhibo-video"
       :flvSrc="flvSrc2"
       :hlsSrc="hlsSrc2"
       :muted="smallVideo === 'video2'"
        :poster="video2Poster"
       v-if="showVideo2"
-      :class="{ 'small-video': smallVideo === 'video2' }"
+      :class="{ 'zhibo-video': !zhiboVideoFixedWh, 'zhibo-video-fixed-wh': zhiboVideoFixedWh, 'small-video': smallVideo === 'video2' }"
       @click="handleClick('video2', video2Playing)"
       @ready="handleVideo2Ready"
       @playing="handleVideo2Playing"
@@ -33,7 +31,7 @@
 
 <script>
 import MyVideo from "../components/MyVideo";
-import { isWeixin, isANDROID } from "../components/MyVideo/util";
+import { isWeixin, isANDROID, isUC, isQQBrowser } from "../components/MyVideo/util";
 
 export default {
   name: "home",
@@ -53,6 +51,7 @@ export default {
       hlsSrc1: '/live/av0.m3u8',
       flvSrc2: '/live/teacher.flv',
       hlsSrc2: '/live/teacher.m3u8',
+      zhiboVideoFixedWh: isUC || isQQBrowser,
       // sources1: "/hls/test.m3u8", // /flv?port=1935&app=hls&stream=test
       // sources2: "/hls/test.m3u8" // /movie.mp4
       // sources1: [{
@@ -72,6 +71,7 @@ export default {
   mounted() {},
   methods: {
     handleClick(type, playing) {
+      if (isUC) return
       if (!playing) return
       if (type !== this.smallVideo) return;
       if (this.smallVideo === "video1") {
@@ -96,6 +96,8 @@ export default {
 <style lang="scss" scoped>
 .home {
   height: 100%;
+  // background: black;
+
   .zhibo-video {
     position: absolute;
     left: 0;
@@ -103,9 +105,47 @@ export default {
     width: 100%;
     height: 100%;
   }
+
+  .zhibo-video-fixed-wh {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 300px;
+  }
+
+  .zhibo-video-fixed-wh.small-video {
+    left: 20px;
+    top: 1%;
+    transform: unset;
+    width: 200px;
+    height: 26%;
+    z-index: 1;
+  }
+
+  @media screen and (min-width: 600px) {
+    .zhibo-video-fixed-wh {
+      left: 0;
+      top: 0;
+      transform: none;
+      width: 70%;
+      height: 100%;
+    }
+    .zhibo-video-fixed-wh.small-video {
+      left: unset;
+      top: unset;
+      bottom: 20px;
+      width: 28%;
+      height: 200px;
+      right: 0;
+    }
+  }
+
   .small-video {
     left: 20px;
     top: 20px;
+    transform: unset;
     width: 200px;
     height: 150px;
     z-index: 1;

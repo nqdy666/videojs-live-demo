@@ -9,7 +9,7 @@
       playsinline
       webkit-playsinline
       x5-playsinline
-      x5-video-player-type="h5"
+      :x5-video-player-type="xVideoPlayerType"
     ></video>
   </div>
 </template>
@@ -19,7 +19,7 @@
 // import _videojs from 'video.js'
 // const videojs = window.videojs || _videojs
 const videojs = window.videojs;
-import { isWeixin } from './util'
+import { isWeixin, isQQBrowser } from './util'
 
 function autoPlayAudio(video) {
   if (window.WeixinJSBridge) {
@@ -120,6 +120,7 @@ export default {
   data() {
     return {
       player: null,
+      xVideoPlayerType: isQQBrowser ? '' : 'h5',
       reseted: true
     };
   },
