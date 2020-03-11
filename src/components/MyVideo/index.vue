@@ -123,9 +123,9 @@ export default {
       //   bigPlayButton = true
       // }
       let autoplay = true
-      // UC浏览器自动播放有问题
+      // UC浏览器和QQ浏览器的video会被拦截，而且无法通过设置autoplay自动播放有问题
       if (isUC || isQQBrowser) {
-        autoplay = false
+        // autoplay = false
       }
       return {
         techOrder: ["html5", 'flvjs', "flash"],
