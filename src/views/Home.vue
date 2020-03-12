@@ -51,7 +51,7 @@ export default {
       hlsSrc1: '/live/av0.m3u8',
       flvSrc2: '/live/teacher.flv',
       hlsSrc2: '/live/teacher.m3u8',
-      zhiboVideoFixedWh: (isUC || isBaiduBoxapp || isQQBrowser || isHuaweiMHA) && isANDROID,
+      zhiboVideoFixedWh: (isUC || isBaiduBoxapp || isQQBrowser || isHuaweiMHA),
       // sources1: "/hls/test.m3u8", // /flv?port=1935&app=hls&stream=test
       // sources2: "/hls/test.m3u8" // /movie.mp4
       // sources1: [{
@@ -108,7 +108,7 @@ export default {
   .zhibo-video-fixed-wh {
     position: absolute;
     left: 0;
-    top: 50%;
+    top: 55%;
     transform: translateY(-50%);
     width: 100%;
     height: 300px;
