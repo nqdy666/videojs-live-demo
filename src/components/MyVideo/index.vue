@@ -25,7 +25,7 @@
 </template>
 <script>
 import videoPlayer from './VueVideoJsPlayer'
-import { isWeixin, isIOS, isIE11, isANDROID, isUC, isQQBrowser, isXiaoMiBrowser } from './util'
+import { isWeixin, isIOS, isIE11, isANDROID, isUC, isQQBrowser, isXiaoMiBrowser, isBaiduBoxapp } from './util'
 
 export default {
   components: {
@@ -55,7 +55,7 @@ export default {
       this.$emit('click')
     },
     onVidoeTouchstart () {
-      if (isUC && isANDROID) {
+      if ((isUC) && isANDROID) {
         this.$emit('click')
       }
     },
@@ -106,6 +106,7 @@ export default {
   },
   data () {
     return {
+      // userAgent: navigator.userAgent,
        events: [
         'touchstart'
       ]

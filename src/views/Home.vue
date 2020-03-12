@@ -31,7 +31,7 @@
 
 <script>
 import MyVideo from "../components/MyVideo";
-import { isWeixin, isANDROID, isUC, isQQBrowser, isHuaweiMHA } from "../components/MyVideo/util";
+import { isWeixin, isANDROID, isUC, isQQBrowser, isHuaweiMHA, isBaiduBoxapp } from "../components/MyVideo/util";
 
 export default {
   name: "home",
@@ -51,7 +51,7 @@ export default {
       hlsSrc1: '/live/av0.m3u8',
       flvSrc2: '/live/teacher.flv',
       hlsSrc2: '/live/teacher.m3u8',
-      zhiboVideoFixedWh: (isUC || isQQBrowser || isHuaweiMHA) && isANDROID,
+      zhiboVideoFixedWh: (isUC || isBaiduBoxapp || isQQBrowser || isHuaweiMHA) && isANDROID,
       // sources1: "/hls/test.m3u8", // /flv?port=1935&app=hls&stream=test
       // sources2: "/hls/test.m3u8" // /movie.mp4
       // sources1: [{
@@ -71,7 +71,6 @@ export default {
   mounted() {},
   methods: {
     handleClick(type, playing) {
-      // if (isUC) return
       if (!playing) return
       if (type !== this.smallVideo) return;
       if (this.smallVideo === "video1") {
