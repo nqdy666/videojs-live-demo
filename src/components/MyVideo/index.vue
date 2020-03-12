@@ -24,7 +24,7 @@
 </template>
 <script>
 import videoPlayer from './VueVideoJsPlayer'
-import { isWeixin, isIOS, isIE11, isANDROID, isUC, isQQBrowser } from './util'
+import { isWeixin, isIOS, isIE11, isANDROID, isUC, isQQBrowser, isXiaoMiBrowser } from './util'
 
 export default {
   components: {
@@ -107,13 +107,11 @@ export default {
   computed: {
     playerOptions() {
       let type = ''
-      let src = ''
-      if (isIOS || isUC || isQQBrowser) {
-        src = this.hlsSrc
-      } else if (isIE11) {
-        src = this.hlsSrc
-        type = ''
-      } else {
+      let src = this.hlsSrc
+      if (isANDROID && isWeixin) {
+        src = this.flvSrc
+        type = 'video/x-flv'
+      } else if (isXiaoMiBrowser) {
         src = this.flvSrc
         type = 'video/x-flv'
       }
