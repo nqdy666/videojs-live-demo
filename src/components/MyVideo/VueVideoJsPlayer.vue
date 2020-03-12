@@ -249,6 +249,11 @@ export default {
   height: 100%;
   width: 100%;
 }
+.vjs-custom-skin video:focus,
+.vjs-custom-skin video:active {
+  outline: none;
+}
+
 .vjs-custom-skin > .video-js {
   width: 100%;
   height: 100%;
