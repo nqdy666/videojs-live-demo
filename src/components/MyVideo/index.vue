@@ -8,6 +8,7 @@
       :options="playerOptions"
       @click.native="onTouchstart($event)"
       @touchstart="onTouchstart($event)"
+      @vidoe-touchstart="onVidoeTouchstart($event)"
       @play="onPlayerPlay($event)"
     @pause="onPlayerPause($event)"
     @ended="onPlayerEnded($event)"
@@ -53,12 +54,18 @@ export default {
     onTouchstart () {
       this.$emit('click')
     },
+    onVidoeTouchstart () {
+      if (isUC) {
+        this.$emit('click')
+      }
+    },
     // listen event
     onPlayerPlay(player) {
       // console.log('player play!', player)
     },
     onPlayerPause(player) {
       // console.log('player pause!', player)
+      this.$emit('playing', false)
     },
     onPlayerEnded(player) {
       // console.log('player ended!', player)
@@ -70,8 +77,8 @@ export default {
       console.log('player Waiting!', player)
     },
     onPlayerPlaying(player) {
-      console.log('player Playing!', player)
-      this.$emit('playing')
+      // console.log('player Playing!', player)
+      this.$emit('playing', true)
     },
     onPlayerTimeupdate(player) {
       // console.log('player Timeupdate!', player.currentTime())

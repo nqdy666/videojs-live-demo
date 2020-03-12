@@ -9,6 +9,7 @@
       playsinline
       webkit-playsinline
       x5-playsinline
+      @touchstart="onTouchstart($event)"
       :x5-video-player-type="xVideoPlayerType"
     ></video>
   </div>
@@ -135,6 +136,9 @@ export default {
     }
   },
   methods: {
+    onTouchstart (e) {
+      this.$emit('vidoe-touchstart', e)
+    },
     initialize() {
       // videojs options
       const videoOptions = Object.assign({}, this.globalOptions, this.options);

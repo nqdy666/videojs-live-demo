@@ -71,7 +71,7 @@ export default {
   mounted() {},
   methods: {
     handleClick(type, playing) {
-      if (isUC) return
+      // if (isUC) return
       if (!playing) return
       if (type !== this.smallVideo) return;
       if (this.smallVideo === "video1") {
@@ -84,11 +84,11 @@ export default {
     },
     handleVideo2Ready () {
     },
-    handleVideo1Playing () {
-      this.video1Playing = true
+    handleVideo1Playing (val) {
+      this.video1Playing = val
     },
-    handleVideo2Playing () {
-      this.video2Playing = true
+    handleVideo2Playing (val) {
+      this.video2Playing = val
     },
   }
 };
