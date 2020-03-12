@@ -23,6 +23,14 @@ export const isXiaoMiBrowser = ((function () { //判断是否是小米浏览器
   return navigator.userAgent.indexOf('XiaoMi/MiuiBrowser') > -1
 })());
 
+export const isHuaweiBrowser = ((function () { //判断是否是华为,荣耀p20
+  return navigator.userAgent.indexOf('HuaweiBrowser') > -1
+})());
+
+export const isHuaweiMHA = ((function () { //判断是否是华为,mate9
+  return navigator.userAgent.indexOf('HUAWEIMHA-AL00') > -1
+})());
+
 export const isIE11 = ((function () { // 判断IE11
   var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串 
 	var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;

@@ -55,7 +55,7 @@ export default {
       this.$emit('click')
     },
     onVidoeTouchstart () {
-      if (isUC) {
+      if (isUC && isANDROID) {
         this.$emit('click')
       }
     },
