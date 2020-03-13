@@ -47,9 +47,9 @@ export default {
       video1Poster: '/poster1.jpg', // /poster1.jpg
       video2Poster: '/poster2.jpg', // /poster2.jpg
       smallVideo: "video1",
-      flvSrc1: '/live/av0.flv',
+      flvSrc1: '/flv?port=1935&app=hls&stream=test',
       hlsSrc1: '/live/av0.m3u8',
-      flvSrc2: '/live/teacher.flv',
+      flvSrc2: '/flv?port=1935&app=hls&stream=void',
       hlsSrc2: '/live/teacher.m3u8',
       zhiboVideoFixedWh: (isUC || isBaiduBoxapp || isQQBrowser || isHuaweiMHA || isOPPOBrowser),
       // sources1: "/hls/test.m3u8", // /flv?port=1935&app=hls&stream=test
