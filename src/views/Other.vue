@@ -1,9 +1,14 @@
 <template>
   <div>
-    <p>{{ userAgent }}</p>
-    <button ref="copyButton" :data-clipboard-text="userAgent"></button>
+    <div>
+      <p>{{ userAgent }}</p>
+      <button ref="copyButton" :data-clipboard-text="userAgent">复制UserAgent</button>
+    </div>
+    <!-- <iframe style="width: 100%;height: calc(100% - 45px);" frameborder="no" border="0" scrolling="yes" src="https://www.baidu.com"></iframe> -->
   </div>
 </template>
+<style lang="scss" scoped>
+</style>
 <script>
 import Clipboard from 'clipboard';
 

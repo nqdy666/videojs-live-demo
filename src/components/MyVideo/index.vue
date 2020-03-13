@@ -25,7 +25,7 @@
 </template>
 <script>
 import videoPlayer from './VueVideoJsPlayer'
-import { isWeixin, isIOS, isIE11, isANDROID, isUC, isQQBrowser, isXiaoMiBrowser, isBaiduBoxapp } from './util'
+import { isWeixin, isIOS, isIE11, isANDROID, isUC, isQQBrowser, isXiaoMiBrowser, isBaiduBoxapp, isOPPOBrowser } from './util'
 
 export default {
   components: {
@@ -120,6 +120,9 @@ export default {
         src = this.flvSrc
         type = 'video/x-flv'
       } else if (isXiaoMiBrowser) {
+        src = this.flvSrc
+        type = 'video/x-flv'
+      } else if (isOPPOBrowser) {
         src = this.flvSrc
         type = 'video/x-flv'
       }
