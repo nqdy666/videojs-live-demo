@@ -5,6 +5,7 @@
       ref="video1"
       :flvSrc="flvSrc1"
       :hlsSrc="hlsSrc1"
+      :autoplay="true"
       :muted="smallVideo === 'video1'"
       v-if="showVideo1"
       :poster="video1Poster"
@@ -16,6 +17,7 @@
     <my-video
       id="vidoe2"
       ref="video2"
+      :autoplay="true"
       :flvSrc="flvSrc2"
       :hlsSrc="hlsSrc2"
       :muted="smallVideo === 'video2'"
@@ -50,9 +52,9 @@ export default {
       video2Poster: '/poster2.jpg', // /poster2.jpg
       smallVideo: "video1",
       flvSrc1: '/flv?port=1935&app=hls&stream=test',
-      hlsSrc1: '/live/av0.m3u8',
-      flvSrc2: '/13flv?port=1935&app=hls&stream=void',
-      hlsSrc2: '/13live/teacher.m3u8',
+      hlsSrc1: '/hls/test.m3u8',
+      flvSrc2: '/flv?port=1935&app=hls&stream=void',
+      hlsSrc2: '/hls/void.m3u8',
       zhiboVideoFixedWh: (isUC || isBaiduBoxapp || isQQBrowser || isHuaweiMHA || isOPPOBrowser),
       // sources1: "/hls/test.m3u8", // /flv?port=1935&app=hls&stream=test
       // sources2: "/hls/test.m3u8" // /movie.mp4
