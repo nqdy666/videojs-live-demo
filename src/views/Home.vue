@@ -12,7 +12,7 @@
       @click="handleClick('video1', video1Playing)"
       @ready="handleVideo1Ready"
       @playing="handleVideo1Playing"
-    ></my-video>
+    ><div slot="error" class="video-error"></div></my-video>
     <my-video
       id="vidoe2"
       ref="video2"
@@ -25,7 +25,9 @@
       @click="handleClick('video2', video2Playing)"
       @ready="handleVideo2Ready"
       @playing="handleVideo2Playing"
-    ></my-video>
+    >
+    <div slot="error" class="video-error"></div>
+    </my-video>
   </div>
 </template>
 
@@ -49,8 +51,8 @@ export default {
       smallVideo: "video1",
       flvSrc1: '/flv?port=1935&app=hls&stream=test',
       hlsSrc1: '/live/av0.m3u8',
-      flvSrc2: '/flv?port=1935&app=hls&stream=void',
-      hlsSrc2: '/live/teacher.m3u8',
+      flvSrc2: '/13flv?port=1935&app=hls&stream=void',
+      hlsSrc2: '/13live/teacher.m3u8',
       zhiboVideoFixedWh: (isUC || isBaiduBoxapp || isQQBrowser || isHuaweiMHA || isOPPOBrowser),
       // sources1: "/hls/test.m3u8", // /flv?port=1935&app=hls&stream=test
       // sources2: "/hls/test.m3u8" // /movie.mp4
@@ -157,6 +159,12 @@ export default {
       bottom: 20px;
       right: 20px;
     }
+  }
+
+  .video-error {
+    // background: red;
+    // width: 100%;
+    // height: 100%;
   }
 }
 </style>

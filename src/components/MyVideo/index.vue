@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="m-video-wrapper">
     <video-player
       class="vjs-custom-skin"
       ref="videoPlayer"
@@ -10,6 +10,7 @@
       @touchstart="onTouchstart($event)"
       @vidoe-touchstart="onVidoeTouchstart($event)"
       @play="onPlayerPlay($event)"
+      @error="onPlayerError($event)"
     @pause="onPlayerPause($event)"
     @ended="onPlayerEnded($event)"
     @loadeddata="onPlayerLoadeddata($event)"
@@ -20,7 +21,13 @@
     @canplaythrough="onPlayerCanplaythrough($event)"
     @ready="playerReadied"
     @statechanged="playerStateChanged($event)"
-    ></video-player>
+    >
+    </video-player>
+    <div class="m-video-error-page" v-show="videoError">
+      <slot name="error">
+        <div></div>
+      </slot>
+    </div>
   </div>
 </template>
 <script>
@@ -101,11 +108,17 @@ export default {
       player.muted(this.muted)
       this.$emit('ready')
     },
+    onPlayerError (player) {
+      // player.errorDisplay.close();
+      console.log('this.videoError', this.videoError)
+      this.videoError = true
+    }
   },
   beforeDestroy () {
   },
   data () {
     return {
+      videoError: false,
       // userAgent: navigator.userAgent,
        events: [
         'touchstart'
@@ -116,6 +129,11 @@ export default {
     playerOptions() {
       let type = ''
       let src = this.hlsSrc
+      // hlsSrc为空，直接用flvSrc。在只使用chrome场景有这方面需要
+      if (!this.hlsSrc) {
+        src = this.flvSrc
+        type = 'video/x-flv'
+      }
       if (isANDROID && isWeixin) {
         src = this.flvSrc
         type = 'video/x-flv'
@@ -188,4 +206,16 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss">
+  .m-video-wrapper {
+    position: relative;
+  }
+  .m-video-error-page {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+  }
+</style>
