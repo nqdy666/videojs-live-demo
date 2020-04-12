@@ -72,8 +72,24 @@ export default {
       // }]
     };
   },
-  mounted() {},
+  mounted() {
+    window.addEventListener('online', this.handleOnline);
+    window.addEventListener('offline', this.handleOffline);
+  },
+  beforeDestroy () {
+    window.removeEventListener('online', this.handleOnline);
+    window.removeEventListener('offline', this.handleOffline);
+  },
   methods: {
+    handleOnline () {
+      // this.video1Playing = false
+      // this.video2Playing = false
+      // this.$refs.video1 && this.$refs.video1.reInit()
+      // this.$refs.video2 && this.$refs.video2.reInit()
+      window.location.reload()
+    },
+    handleOffline () {
+    },
     handleClick(type, playing) {
       if (!playing) return
       if (type !== this.smallVideo) return;

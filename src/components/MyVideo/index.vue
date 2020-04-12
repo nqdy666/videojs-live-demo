@@ -25,7 +25,6 @@
     </video-player>
     <div class="m-video-error-page" v-show="videoError">
       <slot name="error">
-        <div></div>
       </slot>
     </div>
   </div>
@@ -61,6 +60,9 @@ export default {
   mounted () {
   },
   methods: {
+    reInit () {
+      this.$refs.videoPlayer && this.$refs.videoPlayer.reInit();
+    },
     // https://github.com/videojs/video.js/issues/5403
     onTouchstart () {
       this.$emit('click')
@@ -116,6 +118,9 @@ export default {
       // player.errorDisplay.close();
       console.log('this.videoError', this.videoError)
       this.videoError = true
+    },
+    reInit () {
+      this.$refs.videoPlayer && this.$refs.videoPlayer.reInit()
     }
   },
   beforeDestroy () {

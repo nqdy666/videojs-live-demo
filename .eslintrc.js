@@ -16,5 +16,6 @@ module.exports = {
     parser: 'babel-eslint'
   },
   globals: {
+    "WeixinJSBridge": false,
   }
 }

@@ -228,6 +228,13 @@ export default {
           }
           */
       }
+    },
+    reInit () {
+      this.dispose(() => {
+        if (this.options && this.options.sources && this.options.sources.length) {
+          this.initialize();
+        }
+      });
     }
   },
   watch: {
