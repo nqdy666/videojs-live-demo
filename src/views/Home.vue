@@ -35,7 +35,7 @@
 
 <script>
 import MyVideo from "../components/MyVideo";
-import { isWeixin, isANDROID, isUC, isQQBrowser, isHuaweiMHA, isBaiduBoxapp, isOPPOBrowser } from "../components/MyVideo/util";
+import { isWeixin, isANDROID, isUC, isQQBrowser, isHuaweiMHA, isBaiduBoxapp, isOPPOBrowser, isWeixinQQBrowser } from "../components/MyVideo/util";
 
 export default {
   name: "home",
@@ -52,10 +52,11 @@ export default {
       video2Poster: '/poster2.jpg', // /poster2.jpg
       smallVideo: "video1",
       flvSrc1: '/flv?port=1935&app=hls&stream=test',
-      hlsSrc1: '/hls/test.m3u8',
+      hlsSrc1: 'http://172.29.7.108/zhibo/test/123.m3u8',
       flvSrc2: '/flv?port=1935&app=hls&stream=void',
       hlsSrc2: '/hls/void.m3u8',
-      zhiboVideoFixedWh: (isUC || isBaiduBoxapp || isQQBrowser || isHuaweiMHA || isOPPOBrowser),
+      // hlsSrc2: '/hls/void.m3u8',
+      zhiboVideoFixedWh: (isUC || isBaiduBoxapp || isQQBrowser || isHuaweiMHA || isOPPOBrowser || isWeixinQQBrowser),
       // sources1: "/hls/test.m3u8", // /flv?port=1935&app=hls&stream=test
       // sources2: "/hls/test.m3u8" // /movie.mp4
       // sources1: [{

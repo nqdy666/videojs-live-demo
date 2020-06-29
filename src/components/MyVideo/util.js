@@ -19,6 +19,10 @@ export const isQQBrowser = ((function () { //判断是否是手机QQ浏览器
   return navigator.userAgent.indexOf('MQQBrowser') > -1 && !isWeixin
 })());
 
+export const isWeixinQQBrowser = ((function () { //判断是否是MQQBrowser内核的微信
+  return navigator.userAgent.indexOf('MQQBrowser') > -1 && isWeixin
+})());
+
 export const isXiaoMiBrowser = ((function () { //判断是否是小米浏览器
   return navigator.userAgent.indexOf('XiaoMi/MiuiBrowser') > -1
 })());

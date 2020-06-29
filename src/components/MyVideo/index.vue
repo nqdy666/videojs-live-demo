@@ -60,9 +60,6 @@ export default {
   mounted () {
   },
   methods: {
-    reInit () {
-      this.$refs.videoPlayer && this.$refs.videoPlayer.reInit();
-    },
     // https://github.com/videojs/video.js/issues/5403
     onTouchstart () {
       this.$emit('click')
@@ -144,14 +141,14 @@ export default {
         type = 'video/x-flv'
       }
       if (isANDROID && isWeixin) {
-        src = this.flvSrc
-        type = 'video/x-flv'
+        // src = this.flvSrc
+        // type = 'video/x-flv'
       } else if (isXiaoMiBrowser) {
-        src = this.flvSrc
-        type = 'video/x-flv'
+        // src = this.flvSrc
+        // type = 'video/x-flv'
       } else if (isOPPOBrowser) {
-        src = this.flvSrc
-        type = 'video/x-flv'
+        // src = this.flvSrc
+        // type = 'video/x-flv'
       }
       let bigPlayButton = true
       // // safari需要大按钮，安卓微信需要大按钮
