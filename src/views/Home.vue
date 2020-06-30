@@ -51,26 +51,16 @@ export default {
       video1Poster: '/poster1.jpg', // /poster1.jpg
       video2Poster: '/poster2.jpg', // /poster2.jpg
       smallVideo: "video1",
-      flvSrc1: '/flv?port=1935&app=hls&stream=test',
-      hlsSrc1: 'http://172.29.7.108/zhibo/test/123.m3u8',
-      flvSrc2: '/flv?port=1935&app=hls&stream=void',
-      hlsSrc2: '/hls/void.m3u8',
-      // hlsSrc2: '/hls/void.m3u8',
-      zhiboVideoFixedWh: (isUC || isBaiduBoxapp || isQQBrowser || isHuaweiMHA || isOPPOBrowser || isWeixinQQBrowser),
-      // sources1: "/hls/test.m3u8", // /flv?port=1935&app=hls&stream=test
-      // sources2: "/hls/test.m3u8" // /movie.mp4
-      // sources1: [{
-      //   type: 'video/x-flv',
-      //   src: '/live/av0.flv', // '/hls/test.m3u8'
-      // }, {
-      //   src: '/live/av0.m3u8'
-      // }],
-      // sources2: [{
-      //   type: 'video/x-flv',
-      //   src: '/live/teacher.flv', // '/hls/test.m3u8'
-      // }, {
-      //   src: '/live/teacher.m3u8'
-      // }]
+      
+      flvSrc1: '/flv?port=1935&app=hls&stream=video1',
+      flvSrc2: '/flv?port=1935&app=hls&stream=video2',
+      hlsSrc1: '/hls/video1.m3u8',
+      hlsSrc2: '/hls/video2.m3u8',
+      // 当hls为空的时候，会选择flv播放
+      // hlsSrc1: '',
+      // hlsSrc2: '',
+      // zhiboVideoFixedWh：这些机型的视频播放器并非使用web的video播放，而是自定义播放器，视频无法实现画中画效果，故做了一些特殊处理。
+      zhiboVideoFixedWh: (isUC || isBaiduBoxapp || isQQBrowser || isHuaweiMHA || isOPPOBrowser),
     };
   },
   mounted() {
@@ -83,10 +73,6 @@ export default {
   },
   methods: {
     handleOnline () {
-      // this.video1Playing = false
-      // this.video2Playing = false
-      // this.$refs.video1 && this.$refs.video1.reInit()
-      // this.$refs.video2 && this.$refs.video2.reInit()
       window.location.reload()
     },
     handleOffline () {
@@ -116,7 +102,7 @@ export default {
 <style lang="scss" scoped>
 .home {
   height: 100%;
-  // background: black;
+  background: black;
 
   .zhibo-video {
     position: absolute;
@@ -136,11 +122,12 @@ export default {
   }
 
   .zhibo-video-fixed-wh.small-video {
-    left: 20px;
-    top: 1%;
+    right: 0;
+    left: unset;
+    top: 0;
     transform: unset;
     width: 200px;
-    height: 25%;
+    height: 115px;
     z-index: 1;
   }
 
@@ -155,19 +142,21 @@ export default {
     .zhibo-video-fixed-wh.small-video {
       left: unset;
       top: unset;
-      bottom: 20px;
+      top: 50%;
+      margin-top: -55px;
       width: 28%;
-      height: 200px;
+      height: 110px;
       right: 0;
     }
   }
 
   .small-video {
-    left: 20px;
-    top: 20px;
+    right: 0;
+    left: unset;
+    top: 0;
     transform: unset;
     width: 200px;
-    height: 150px;
+    height: 115px;
     z-index: 1;
   }
 
@@ -175,8 +164,8 @@ export default {
     .small-video {
       left: unset;
       top: unset;
-      bottom: 20px;
-      right: 20px;
+      bottom: 0;
+      right: 0;
     }
   }
 
