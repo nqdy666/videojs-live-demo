@@ -20,7 +20,7 @@
 // import _videojs from 'video.js'
 // const videojs = window.videojs || _videojs
 const videojs = window.videojs;
-import { isWeixin, isQQBrowser } from './util'
+import { isWeixin, isQQBrowser } from "./util";
 
 function autoPlayAudio(video) {
   if (window.WeixinJSBridge) {
@@ -28,7 +28,10 @@ function autoPlayAudio(video) {
       "getNetworkType",
       {},
       function(e) {
-        video.play();
+        // 添加延迟，是为了修复ios下刷新页面偶尔会出现转圈圈的问题
+        setTimeout(() => {
+          video && video.play();
+        }, 100);
       },
       false
     );
@@ -37,7 +40,10 @@ function autoPlayAudio(video) {
       "WeixinJSBridgeReady",
       function() {
         WeixinJSBridge.invoke("getNetworkType", {}, function(e) {
-          video.play();
+          // 添加延迟，是为了修复ios下刷新页面偶尔会出现转圈圈的问题
+          setTimeout(() => {
+            video && video.play();
+          }, 100);
         });
       },
       false
@@ -57,7 +63,7 @@ const DEFAULT_EVENTS = [
   "waiting",
   "playing",
   "ended",
-  "error"
+  "error",
 ];
 // export
 export default {
@@ -65,31 +71,31 @@ export default {
   props: {
     start: {
       type: Number,
-      default: 0
+      default: 0,
     },
     id: {
       type: String,
-      default: String(new Date().getTime())
+      default: String(new Date().getTime()),
     },
     crossOrigin: {
       type: String,
-      default: ""
+      default: "",
     },
     playsinline: {
       type: Boolean,
-      default: false
+      default: false,
     },
     customEventName: {
       type: String,
-      default: "statechanged"
+      default: "statechanged",
     },
     options: {
       type: Object,
-      required: true
+      required: true,
     },
     events: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     globalOptions: {
       type: Object,
@@ -111,18 +117,18 @@ export default {
         // },
         // techOrder: ['html5'],
         // plugins: {}
-      })
+      }),
     },
     globalEvents: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data() {
     return {
       player: null,
-      xVideoPlayerType: isQQBrowser ? '' : 'h5',
-      reseted: true
+      xVideoPlayerType: isQQBrowser ? "" : "h5",
+      reseted: true,
     };
   },
   mounted() {
@@ -136,8 +142,19 @@ export default {
     }
   },
   methods: {
-    onTouchstart (e) {
-      this.$emit('vidoe-touchstart', e)
+    reInit() {
+      this.dispose(() => {
+        if (
+          this.options &&
+          this.options.sources &&
+          this.options.sources.length
+        ) {
+          this.initialize();
+        }
+      });
+    },
+    onTouchstart(e) {
+      this.$emit("vidoe-touchstart", e);
     },
     initialize() {
       // videojs options
@@ -161,7 +178,9 @@ export default {
           this.$emit(event, this.player);
         }
         if (value) {
-          this.$emit(this.customEventName, { [event]: value });
+          this.$emit(this.customEventName, {
+            [event]: value,
+          });
         }
       };
       // avoid error "VIDEOJS: ERROR: Unable to find plugin: __ob__"
@@ -185,7 +204,7 @@ export default {
             typeof events[i] === "string" &&
             onEdEvents[events[i]] === undefined
           ) {
-            (event => {
+            ((event) => {
               onEdEvents[event] = null;
               this.on(event, () => {
                 emitPlayerState(event, true);
@@ -198,7 +217,7 @@ export default {
           emitPlayerState("timeupdate", this.currentTime());
         });
         if (videoOptions.autoplay && isWeixin) {
-          autoPlayAudio(this)
+          autoPlayAudio(this);
         }
         // player readied
         self.$emit("ready", this);
@@ -221,21 +240,14 @@ export default {
           });
         });
         /*
-          if (!this.$el.children.length) {
-            const video = document.createElement('video')
-            video.className = 'video-js'
-            this.$el.appendChild(video)
-          }
-          */
+            if (!this.$el.children.length) {
+              const video = document.createElement('video')
+              video.className = 'video-js'
+              this.$el.appendChild(video)
+            }
+            */
       }
     },
-    reInit () {
-      this.dispose(() => {
-        if (this.options && this.options.sources && this.options.sources.length) {
-          this.initialize();
-        }
-      });
-    }
   },
   watch: {
     options: {
@@ -246,9 +258,9 @@ export default {
             this.initialize();
           }
         });
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 <style>
@@ -256,6 +268,7 @@ export default {
   height: 100%;
   width: 100%;
 }
+
 .vjs-custom-skin video:focus,
 .vjs-custom-skin video:active {
   outline: none;

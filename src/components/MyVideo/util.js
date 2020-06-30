@@ -23,6 +23,10 @@ export const isWeixinQQBrowser = ((function () { //判断是否是MQQBrowser内�
   return navigator.userAgent.indexOf('MQQBrowser') > -1 && isWeixin
 })());
 
+export const isWeixinXWEB = ((function () { //判断是否是XWEB内核的微信
+  return navigator.userAgent.indexOf('XWEB') > -1 && isWeixin
+})());
+
 export const isXiaoMiBrowser = ((function () { //判断是否是小米浏览器
   return navigator.userAgent.indexOf('XiaoMi/MiuiBrowser') > -1
 })());
@@ -51,3 +55,9 @@ export const isIE11 = ((function () { // 判断IE11
 	}
 	return false;
 })());
+
+export const isChrome = ((function () { //判断是谷歌浏览器
+  return navigator.userAgent.indexOf('Chrome') > -1
+})());
+
+console.log('navigator.userAgent', navigator.userAgent)
