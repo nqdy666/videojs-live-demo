@@ -39,6 +39,12 @@ video js 样例代码，支持hls和flv直播
 ### Demo代码相关
 `src/views/Home.vue`文件中的`/hls/video1.m3u8`是直播的地址，如果地址存在跨域问题，可以在`vue.config.js`文件中`proxy`配置本地代理。
 
+### 搭建直播推流服务
+
+参看这个项目
+
+https://github.com/nqdy666/nginx-live-serve-window-x64
+
 ## 开始
 ```
 npm install
