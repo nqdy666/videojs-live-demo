@@ -24,7 +24,7 @@
     >
     </video-player>
     <div class="m-video-error-page" v-show="videoError">
-      <slot name="error"> </slot>
+      <slot name="error" v-bind:error="videoErrorContent"><p class="m-video-error">{{videoErrorContent}}</p></slot>
     </div>
   </div>
 </template>
@@ -71,6 +71,8 @@ export default {
   mounted() {},
   methods: {
     go2Refresh(){
+      this.videoError = false
+      this.videoErrorContent = ''
       this.isPlayerWaiting = false
       this.$refs.videoPlayer && this.$refs.videoPlayer.reInit()
     },
@@ -140,21 +142,25 @@ export default {
       this.$emit("ready");
     },
     onPlayerError(player) {
-      // player.errorDisplay.close();
-      console.log("this.videoError", this.videoError);
+      console.log("errorDisplay", player.errorDisplay.content());
+      player.errorDisplay.close();
+      this.videoErrorContent = player.errorDisplay.content()
       this.videoError = true;
     },
     reInit() {
       this.$refs.videoPlayer && this.$refs.videoPlayer.reInit();
     },
   },
-  beforeDestroy() {},
+  beforeDestroy() {
+    this.waitingInterval && clearInterval(this.waitingInterval)
+  },
   data() {
     return {
       videoError: false,
+      videoErrorContent: '',
       // userAgent: navigator.userAgent,
       events: ["touchstart"],
-      jobId:"",
+      jobId: "",
       isPlayerWaiting: false, // 是否播放器处于等待状态，因为播放器一直处于等待状态，可能是卡主了，无法继续播放了
       reloadAfterWaitingTime: 10, // 如果播放器一直等待超过这个时间，就重载播放器，这里设置15s
     };
@@ -189,9 +195,9 @@ export default {
         // autoplay = false
       }
 
-      let hlsConfig = {}
+      let htmlConfig = {}
       if (isWeixinQQBrowser) {
-        hlsConfig = {
+        htmlConfig = {
           hlsjsConfig: {
             debug: false,
             // Put your hls.js config here
@@ -217,7 +223,7 @@ export default {
           },
         },
         html5: {
-          ...hlsConfig,
+          ...htmlConfig,
         },
         playsinline: true,
         controls: false,
@@ -240,18 +246,6 @@ export default {
             src,
           },
         ],
-        // sources: [
-        //   {
-        //     // src: "rtmp://120.77.78.199:1935/hls/test"
-        //     type: 'video/x-flv',
-        //     src: this.src, // '/hls/test.m3u8'
-        //     // src: "https://interactive-examples.mdn.mozilla.net/media/examples/flower.webm"
-        //     // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
-        //   },
-        //   {
-        //     src: '/live/av0.m3u8'
-        //   }
-        // ]
       };
     },
   },
@@ -273,5 +267,10 @@ export default {
   z-index: 1;
   width: 100%;
   height: 100%;
+}
+.m-video-error {
+  color: white;
+  position: absolute;
+  bottom: 0;
 }
 </style>

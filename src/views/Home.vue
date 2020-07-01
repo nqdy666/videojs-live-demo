@@ -13,7 +13,7 @@
       @click="handleClick('video1', video1Playing)"
       @ready="handleVideo1Ready"
       @playing="handleVideo1Playing"
-    ><div slot="error" class="video-error"></div></my-video>
+    ></my-video>
     <my-video
       id="vidoe2"
       ref="video2"
@@ -28,7 +28,6 @@
       @ready="handleVideo2Ready"
       @playing="handleVideo2Playing"
     >
-    <div slot="error" class="video-error"></div>
     </my-video>
   </div>
 </template>
