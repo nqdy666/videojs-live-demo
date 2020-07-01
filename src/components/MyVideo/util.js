@@ -7,6 +7,10 @@ export const isIOS = ((function () { //判断是否是iOS
   return navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)
 })());
 
+export const isIphoneOS10 = ((function () { //判断是否是iphone的系统是否为10
+  return navigator.userAgent.indexOf('iPhone OS 10') > -1
+})());
+
 export const isANDROID = ((function () { //判断是否是Android
   return navigator.userAgent.match(/android/i)
 })());
