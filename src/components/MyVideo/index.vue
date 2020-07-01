@@ -11,27 +11,36 @@
       @vidoe-touchstart="onVidoeTouchstart($event)"
       @play="onPlayerPlay($event)"
       @error="onPlayerError($event)"
-    @pause="onPlayerPause($event)"
-    @ended="onPlayerEnded($event)"
-    @loadeddata="onPlayerLoadeddata($event)"
-    @waiting="onPlayerWaiting($event)"
-    @playing="onPlayerPlaying($event)"
-    @timeupdate="onPlayerTimeupdate($event)"
-    @canplay="onPlayerCanplay($event)"
-    @canplaythrough="onPlayerCanplaythrough($event)"
-    @ready="playerReadied"
-    @statechanged="playerStateChanged($event)"
+      @pause="onPlayerPause($event)"
+      @ended="onPlayerEnded($event)"
+      @loadeddata="onPlayerLoadeddata($event)"
+      @waiting="onPlayerWaiting($event)"
+      @playing="onPlayerPlaying($event)"
+      @timeupdate="onPlayerTimeupdate($event)"
+      @canplay="onPlayerCanplay($event)"
+      @canplaythrough="onPlayerCanplaythrough($event)"
+      @ready="playerReadied"
+      @statechanged="playerStateChanged($event)"
     >
     </video-player>
     <div class="m-video-error-page" v-show="videoError">
-      <slot name="error">
-      </slot>
+      <slot name="error"> </slot>
     </div>
   </div>
 </template>
 <script>
-import videoPlayer from './VueVideoJsPlayer'
-import { isWeixin, isIOS, isIE11, isANDROID, isUC, isQQBrowser, isXiaoMiBrowser, isBaiduBoxapp, isOPPOBrowser } from './util'
+import videoPlayer from "./VueVideoJsPlayer";
+import {
+  isWeixin,
+  isIOS,
+  isIE11,
+  isANDROID,
+  isUC,
+  isQQBrowser,
+  isXiaoMiBrowser,
+  isBaiduBoxapp,
+  isOPPOBrowser,
+} from "./util";
 
 export default {
   components: {
@@ -54,19 +63,18 @@ export default {
     },
     poster: {
       type: String,
-      default: ''
-    }
+      default: "",
+    },
   },
-  mounted () {
-  },
+  mounted() {},
   methods: {
     // https://github.com/videojs/video.js/issues/5403
-    onTouchstart () {
-      this.$emit('click')
+    onTouchstart() {
+      this.$emit("click");
     },
-    onVidoeTouchstart () {
-      if ((isUC) && isANDROID) {
-        this.$emit('click')
+    onVidoeTouchstart() {
+      if (isUC && isANDROID) {
+        this.$emit("click");
       }
     },
     // listen event
@@ -75,7 +83,7 @@ export default {
     },
     onPlayerPause(player) {
       // console.log('player pause!', player)
-      this.$emit('playing', false)
+      this.$emit("playing", false);
     },
     onPlayerEnded(player) {
       // console.log('player ended!', player)
@@ -84,11 +92,11 @@ export default {
       // console.log('player Loadeddata!', player)
     },
     onPlayerWaiting(player) {
-      console.log('player Waiting!', player)
+      console.log("player Waiting!", player);
     },
     onPlayerPlaying(player) {
       // console.log('player Playing!', player)
-      this.$emit('playing', true)
+      this.$emit("playing", true);
     },
     onPlayerTimeupdate(player) {
       // console.log('player Timeupdate!', player.currentTime())
@@ -107,38 +115,35 @@ export default {
     playerReadied(player) {
       // console.log("example player 1 readied", player);
       // console.log('example 01: the player is readied', player)
-      this.player = player
-      player.muted(this.muted)
-      this.$emit('ready')
+      this.player = player;
+      player.muted(this.muted);
+      this.$emit("ready");
     },
-    onPlayerError (player) {
+    onPlayerError(player) {
       // player.errorDisplay.close();
-      console.log('this.videoError', this.videoError)
-      this.videoError = true
+      console.log("this.videoError", this.videoError);
+      this.videoError = true;
     },
-    reInit () {
-      this.$refs.videoPlayer && this.$refs.videoPlayer.reInit()
-    }
+    reInit() {
+      this.$refs.videoPlayer && this.$refs.videoPlayer.reInit();
+    },
   },
-  beforeDestroy () {
-  },
-  data () {
+  beforeDestroy() {},
+  data() {
     return {
       videoError: false,
       // userAgent: navigator.userAgent,
-       events: [
-        'touchstart'
-      ]
-    }
+      events: ["touchstart"],
+    };
   },
   computed: {
     playerOptions() {
-      let type = ''
-      let src = this.hlsSrc
+      let type = "";
+      let src = this.hlsSrc;
       // hlsSrc为空，直接用flvSrc。在只使用chrome场景有这方面需要
       if (!this.hlsSrc) {
-        src = this.flvSrc
-        type = 'video/x-flv'
+        src = this.flvSrc;
+        type = "video/x-flv";
       }
       if (isANDROID && isWeixin) {
         // src = this.flvSrc
@@ -150,18 +155,18 @@ export default {
         // src = this.flvSrc
         // type = 'video/x-flv'
       }
-      let bigPlayButton = true
+      let bigPlayButton = true;
       // // safari需要大按钮，安卓微信需要大按钮
       // if ((isIOS && !isWeixin) || (isANDROID && isWeixin)) {
       //   bigPlayButton = true
       // }
-      let autoplay = this.autoplay
+      let autoplay = this.autoplay;
       // UC浏览器和QQ浏览器的video会被拦截，而且无法通过设置autoplay自动播放有问题
       if (isUC || isQQBrowser) {
         // autoplay = false
       }
       return {
-        techOrder: ["html5", 'flvjs', "flash"],
+        techOrder: ["html5", "flvjs", "flash"],
         flvjs: {
           mediaDataSource: {
             isLive: true,
@@ -187,8 +192,8 @@ export default {
         sources: [
           {
             type,
-            src
-          }
+            src,
+          },
         ],
         // sources: [
         //   {
@@ -203,25 +208,25 @@ export default {
         //   }
         // ]
       };
-    }
+    },
   },
   watch: {
-    muted () {
-      this.player && (this.player.muted(this.muted))
-    }
-  }
+    muted() {
+      this.player && this.player.muted(this.muted);
+    },
+  },
 };
 </script>
 <style lang="scss">
-  .m-video-wrapper {
-    position: relative;
-  }
-  .m-video-error-page {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-  }
+.m-video-wrapper {
+  position: relative;
+}
+.m-video-error-page {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
 </style>
