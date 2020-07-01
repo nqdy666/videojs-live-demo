@@ -30,6 +30,7 @@ video js 样例代码，支持hls和flv直播
 - 【flv.js】https://github.com/Bilibili/flv.js/
 
 ### 已知限制
+
 具体看[WEB直播方案与浏览器兼容问题总结](docs/WEB直播方案与浏览器兼容问题总结.xlsx)
 
 ### 文档
@@ -53,7 +54,7 @@ npm install
 ### 开发
 ```
 npm run dev
-npm run serve
+或者 npm run serve
 ```
 
 ### 编译
