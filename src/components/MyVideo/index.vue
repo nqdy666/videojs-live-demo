@@ -40,6 +40,8 @@ import {
   isXiaoMiBrowser,
   isBaiduBoxapp,
   isOPPOBrowser,
+  isWeixinQQBrowser,
+  isWeixinXWEB,
 } from "./util";
 
 export default {
@@ -68,6 +70,10 @@ export default {
   },
   mounted() {},
   methods: {
+    go2Refresh(){
+      this.isPlayerWaiting = false
+      this.$refs.videoPlayer && this.$refs.videoPlayer.reInit()
+    },
     // https://github.com/videojs/video.js/issues/5403
     onTouchstart() {
       this.$emit("click");
@@ -79,6 +85,7 @@ export default {
     },
     // listen event
     onPlayerPlay(player) {
+      this.isPlayerWaiting = false // 又处于播放状态，设置成false
       // console.log('player play!', player)
     },
     onPlayerPause(player) {
@@ -93,10 +100,23 @@ export default {
     },
     onPlayerWaiting(player) {
       console.log("player Waiting!", player);
+      // 是否播放器处于等待状态，因为播放器一直处于等待状态，可能是卡主了，无法继续播放了
+      // 如果播放器一直等待超过这个时间，就重载播放器，这里设置10s
+      this.isPlayerWaiting = true
+      this.waitingInterval && clearInterval(this.waitingInterval)
+      this.waitingInterval = setTimeout(() => {
+        if (this.isPlayerWaiting && !this.jobId) {
+          this.isPlayerWaiting = false
+          this.go2Refresh()
+        }
+        this.waitingInterval = null
+      }, this.reloadAfterWaitingTime * 1000)
+      console.log('player Waiting!', player)
     },
     onPlayerPlaying(player) {
       // console.log('player Playing!', player)
-      this.$emit("playing", true);
+      this.isPlayerWaiting = false // 又处于播放状态，设置成false
+      this.$emit('playing', true)
     },
     onPlayerTimeupdate(player) {
       // console.log('player Timeupdate!', player.currentTime())
@@ -134,6 +154,9 @@ export default {
       videoError: false,
       // userAgent: navigator.userAgent,
       events: ["touchstart"],
+      jobId:"",
+      isPlayerWaiting: false, // 是否播放器处于等待状态，因为播放器一直处于等待状态，可能是卡主了，无法继续播放了
+      reloadAfterWaitingTime: 10, // 如果播放器一直等待超过这个时间，就重载播放器，这里设置15s
     };
   },
   computed: {
@@ -165,6 +188,25 @@ export default {
       if (isUC || isQQBrowser) {
         // autoplay = false
       }
+
+      let hlsConfig = {}
+      if (isWeixinQQBrowser) {
+        hlsConfig = {
+          hlsjsConfig: {
+            debug: false,
+            // Put your hls.js config here
+          },
+          // vhs实现对hls是否使用overrideNative不生效
+          // vhs: {
+          //   overrideNative: true
+          // },
+          // 使用hls.overrideNative，会解决部分微信强制调用元素播放器的问题。不过性能上略慢一点，第一次加载慢一点
+          // hls: {
+          //   overrideNative: true, 
+          // }
+        }
+      }
+
       return {
         techOrder: ["html5", "flvjs", "flash"],
         flvjs: {
@@ -173,6 +215,9 @@ export default {
             cors: true,
             withCredentials: false,
           },
+        },
+        html5: {
+          ...hlsConfig,
         },
         playsinline: true,
         controls: false,
