@@ -51,3 +51,11 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### 错误信息
+
+引入了videojs-hlsjs-plugin@1.0.14
+```
+HLS.js error: networkError - fatal: true - manifestLoadError
+```
+
