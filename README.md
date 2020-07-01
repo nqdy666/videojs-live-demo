@@ -1,6 +1,6 @@
 # video-js-demo
 
-video js 样例代码，其中有
+video js 样例代码，支持hls和flv直播
 
 ### 效果图
 ![效果图](./docs/screen-shot.png)
@@ -8,8 +8,8 @@ video js 样例代码，其中有
 ### 特性
 - 基于vue-cli@3工具生成
 - 支持hls、flv直播
-
-
+- 支持两路同时播放
+- 支持大小视频点击切换
 
 ### 用到相关的库
 - video-js@7.8.3
@@ -28,6 +28,13 @@ video js 样例代码，其中有
 - 【hls.js】https://github.com/video-dev/hls.js/
 - 【videojs-hlsjs-plugin】https://github.com/streamroot/videojs-hlsjs-plugin
 - 【flv.js】https://github.com/Bilibili/flv.js/
+
+### 已知限制
+具体看[WEB直播方案与浏览器兼容问题总结](docs/WEB直播方案与浏览器兼容问题总结.xlsx)
+
+### 文档
+
+[WEB直播方案与浏览器兼容问题总结](docs/WEB直播方案与浏览器兼容问题总结.xlsx)
 
 ### Demo代码相关
 `src/views/Home.vue`文件中的`/hls/video1.m3u8`是直播的地址，根据实际情况修改，另外这个地址是通过最终代理访问的，代理的配置在`vue.config.js`文件中`proxy`配置，也请根据实际情况修改。
