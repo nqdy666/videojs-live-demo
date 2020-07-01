@@ -37,7 +37,7 @@ video js 样例代码，支持hls和flv直播
 [WEB直播方案与浏览器兼容问题总结](docs/WEB直播方案与浏览器兼容问题总结.xlsx)
 
 ### Demo代码相关
-`src/views/Home.vue`文件中的`/hls/video1.m3u8`是直播的地址，根据实际情况修改，另外这个地址是通过最终代理访问的，代理的配置在`vue.config.js`文件中`proxy`配置，也请根据实际情况修改。
+`src/views/Home.vue`文件中的`/hls/video1.m3u8`是直播的地址，如果地址存在跨域问题，可以在`vue.config.js`文件中`proxy`配置本地代理。
 
 ## 开始
 ```

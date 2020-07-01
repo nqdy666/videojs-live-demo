@@ -51,10 +51,10 @@ export default {
       video2Poster: '/poster2.jpg', // /poster2.jpg
       smallVideo: "video1",
       
-      flvSrc1: '/flv?port=1935&app=hls&stream=video1',
-      flvSrc2: '/flv?port=1935&app=hls&stream=video2',
-      hlsSrc1: '/hls/video1.m3u8',
-      hlsSrc2: '/hls/video2.m3u8',
+      flvSrc1: 'http://localhost:8090/flv?port=1935&app=hls&stream=video1',
+      flvSrc2: 'http://localhost:8090/flv?port=1935&app=hls&stream=video2',
+      hlsSrc1: 'http://localhost:8090/hls/video1.m3u8',
+      hlsSrc2: 'http://localhost:8090/hls/video2.m3u8',
       // 当hls为空的时候，会选择flv播放
       // hlsSrc1: '',
       // hlsSrc2: '',
