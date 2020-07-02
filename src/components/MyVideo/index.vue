@@ -71,6 +71,12 @@ export default {
       type: String,
       default: "",
     },
+    options: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
   },
   mounted() {},
   methods: {
@@ -250,6 +256,7 @@ export default {
             src,
           },
         ],
+        ...this.options,
       };
     },
   },
