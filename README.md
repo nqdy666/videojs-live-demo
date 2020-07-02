@@ -1,4 +1,4 @@
-# video-js-demo
+# videojs-live-demo
 
 video js 样例代码，支持hls和flv直播
 
