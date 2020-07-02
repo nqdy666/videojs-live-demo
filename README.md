@@ -73,7 +73,7 @@ npm run lint
 播放m3u8，断网后会一直转圈圈，不会报错。
 
 
-播放m3u8，引入了videojs-hlsjs-plugin@1.0.14后，断网后包这样子的错误
+播放m3u8，引入了videojs-hlsjs-plugin@1.0.14后，断网后报这样子的错误
 ```
 HLS.js error: networkError - fatal: true - manifestLoadError
 ```
