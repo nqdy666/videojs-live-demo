@@ -1,6 +1,7 @@
 <template>
   <div class="m-video-wrapper">
     <video-player
+      :id="id"
       class="vjs-custom-skin"
       ref="videoPlayer"
       :events="events"
@@ -49,6 +50,9 @@ export default {
     videoPlayer,
   },
   props: {
+    id: {
+      type: String,
+    },
     flvSrc: {
       type: String,
     },
