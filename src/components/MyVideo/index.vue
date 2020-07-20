@@ -43,7 +43,14 @@ import {
   isOPPOBrowser,
   isWeixinQQBrowser,
   isWeixinXWEB,
+  isChrome,
 } from "./util";
+
+// 使用videojs，pc的chrome在播放摄像头视频，会卡顿严重
+// 故切换到hls.js播放，hls.js播放摄像头视频会好一点
+if ((isChrome && !isANDROID && !isIOS) || isWeixinQQBrowser) {
+  window.hlsSourceHandler.register(window.videojs);
+}
 
 export default {
   components: {
@@ -205,24 +212,6 @@ export default {
         // autoplay = false
       }
 
-      let htmlConfig = {}
-      if (isWeixinQQBrowser) {
-        htmlConfig = {
-          hlsjsConfig: {
-            debug: false,
-            // Put your hls.js config here
-          },
-          // vhs实现对hls是否使用overrideNative不生效
-          // vhs: {
-          //   overrideNative: true
-          // },
-          // 使用hls.overrideNative，会解决部分微信强制调用元素播放器的问题。不过性能上略慢一点，第一次加载慢一点
-          // hls: {
-          //   overrideNative: true, 
-          // }
-        }
-      }
-
       return {
         techOrder: ["html5", "flvjs", "flash"],
         flvjs: {
@@ -233,7 +222,19 @@ export default {
           },
         },
         html5: {
-          ...htmlConfig,
+          // 只有注册了videojs-hlsjs-plugin才会生效
+          hlsjsConfig: {
+            debug: false,
+            // Put your hls.js config here
+          },
+          // vhs实现对hls是否使用overrideNative不生效
+          // vhs: {
+          //   overrideNative: true
+          // },
+          // 使用hls.overrideNative，会解决部分微信强制调用元素播放器的问题。不过性能上略慢一点，第一次加载慢一点。
+          // hls: {
+          //   overrideNative: true, 
+          // }
         },
         playsinline: true,
         controls: false,

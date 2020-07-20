@@ -70,12 +70,12 @@ npm run lint
 
 ### videojs 错误信息
 
-播放m3u8，断网后会一直转圈圈，不会报错。
-
-
+播放m3u8，使用video.js 断网后会一直转圈圈，不会报错。
 播放m3u8，引入了videojs-hlsjs-plugin@1.0.14后，断网后报这样子的错误
 ```
 HLS.js error: networkError - fatal: true - manifestLoadError
 ```
 
-
+* 研究m3u8切片，验证不同切片策略下直播的流畅度（一个切片3s，共9s缓存效果可以）（切片时长太小（1s）会页面在刷新的时候及其容易出现拼命加载中或者黑屏现象）
+* 在上述切片的情况下，pc谷歌浏览器使用videojs7播放m3u8视频依然会有卡顿的现象。故使用到hls.js播放，卡顿问题明显改善。故chrome使用hls.js播放。
+* 安卓企业微信和部分机型的微信（useragent显示MQQbrowser的微信），这种使用hls.js可以两路直播，但不稳定容易卡顿，使用浏览器自带播放器直播且稳定。

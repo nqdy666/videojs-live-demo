@@ -17,5 +17,6 @@ module.exports = {
   },
   globals: {
     "WeixinJSBridge": false,
+    "hlsSourceHandler": false,
   }
 }
